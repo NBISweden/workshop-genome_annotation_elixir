@@ -12,6 +12,8 @@ title:  'Introduction to Genome Annotation - 1-5 July 2019'
 The workshop is held at University of Milano-Bicocca, Building U7, Lab 715,
 Via Bicocca degli Arcimboldi 8, 20126 Milan, Italy.
 
+https://elixir.mf.uni-lj.si/enrol/index.php?id=45
+
 ## Course Purpose
 
 The course is aimed at researchers that are involved in on-going or upcoming genome projects and wish to deepen their understanding of the various forms of data and computational steps required to achieve a comprehensive annotation. The focus of the course will be on non-model eukaryote organisms, and in particular the structural annotation of protein coding genes.
