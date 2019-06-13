@@ -1,5 +1,5 @@
 title: "Genome annotation workshop"
-baseurl: /workshop-genome_annotation
+baseurl: /workshop-genome_annotation_elixir
 
 # where things are
 layouts_dir: ./workshop-common/layouts
