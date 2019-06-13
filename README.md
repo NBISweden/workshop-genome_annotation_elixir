@@ -15,5 +15,5 @@ See the preparation folder for more details.
  
 ## Course Webpage
 
-https://nbisweden.github.io/workshop-genome_annotation/index
+https://nbisweden.github.io/workshop-genome_annotation_elixir/
 
