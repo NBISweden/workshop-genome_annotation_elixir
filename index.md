@@ -1,15 +1,16 @@
 ---
 layout: default
-title:  'Introduction to Genome Annotation - May 2019'
+title:  'Introduction to Genome Annotation - 1-5 July 2019'
 ---
 
 [<img align="center" src="NBIS.png" width="200" height="100" />](https://nbis.se) 
 
-# Genome Annotation Workshop
+# Elixir Genome Annotation Workshop
 
 **Date and Location:**
 
-The workshop is held at the Uppsala Biomedical Center, Uppsala, Sweden, on May 15-17 2019.
+The workshop is held at University of Milano-Bicocca, Building U7, Lab 715,
+Via Bicocca degli Arcimboldi 8, 20126 Milan, Italy.
 
 ## Course Purpose
 
@@ -23,7 +24,3 @@ programs from the command line. Previous experience from working with NGS data i
 are encouraged to bring their own laptops, but there will be computers to use for participants unable to do so.
 
 Test your Unix comfort with these exercises: [NGS Introduction - Introduction to Linux](https://scilifelab.github.io/courses/ngsintro/1809/labs/linux-intro)
-
-## Where to apply
-
-Please follow the link here: [SciLifeLab Events Page - De Novo Genome Annotation](https://www.scilifelab.se/events/introduction-to-genome-annotation/)
