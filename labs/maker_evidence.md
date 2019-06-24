@@ -98,25 +98,19 @@ This time, we do not specify a reference species to be used by augustus, which w
 
 This will enable gene building directly from the evidence alignments.
 
-<pre>
-#-----Genome (these are always required)
-<span style='font-weight: bold'>testing</span> <b>if</b> <strong>works</strong>
-</pre>
-
 :bangbang: **Be sure to have deactivated the parameters _model\_org= #_ and _repeat\_protein= #_ to avoid the heavy work of repeatmasker.**
 Before running MAKER check you have modified the maker_opts.ctl file properly.
 <details>
 <summary>:key: Click here to see the expected maker_opts.ctl.</summary>
 {% highlight bash %}
 #-----Genome (these are always required)
-{{ '<span style="color:blue">genome.fa</span>' | escape_once }}
-genome=<span style="color:blue">genome.fa</span> #genome sequence (fasta file or fasta embeded in GFF3 file)  
+genome=genome.fa #genome sequence (fasta file or fasta embeded in GFF3 file)  
 organism_type=<strong>eukaryotic</strong> #eukaryotic or prokaryotic. Default is eukaryotic
 
 ...
 
 #-----EST Evidence (for best results provide a file for at least one)  
-est=est.genome.fa,Trinity.fasta #set of ESTs or assembled mRNA-seq in fasta format  
+est=est.genome.fa #set of ESTs or assembled mRNA-seq in fasta format  
 altest= #EST/cDNA sequence file in fasta format from an alternate organism  
 est_gff=stringtie2genome.ok.gff #aligned ESTs or mRNA-seq from an external GFF3 file  
 altest_gff= #aligned ESTs from a closly relate species in GFF3 format
