@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  'Schedule'
+title:  'Exercices'
 ---
 
 # Introduction to genome annotation
