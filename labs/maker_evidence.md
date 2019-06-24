@@ -98,6 +98,10 @@ This time, we do not specify a reference species to be used by augustus, which w
 
 This will enable gene building directly from the evidence alignments.
 
+<pre>
+testing if works
+</pre>
+
 :bangbang: **Be sure to have deactivated the parameters _model\_org= #_ and _repeat\_protein= #_ to avoid the heavy work of repeatmasker.**
 Before running MAKER check you have modified the maker_opts.ctl file properly.
 <details>
