@@ -72,7 +72,7 @@ Transfer the augustus\_drosophila.gff3 to your computer using scp:
 ```bash
 scp __YOURLOGIN__@rackham.uppmax.uu.se:/proj/g2019006/nobackup/__YOURLOGIN__/abinitio_augustus/augustus_drosophila.gff3 .  
 ```
-Load the file in [Webapollo](http://annotation-prod.scilifelab.se:8080/NBIS_course). [Here find the WebApollo instruction](webapollo_usage)
+Load the file in [Webapollo (Here find the instruction)](webapollo_usage)
 <br/>The official Ensembl annotation is available in the genome browser.  
 :question: How does the Augustus annotation compare with the Ensembl annotation? Are they identical?
 
