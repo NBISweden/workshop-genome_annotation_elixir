@@ -13,14 +13,13 @@ objectives:
 
 ## Prerequisites
 
-For this exercise you need to be logged in to Uppmax.
-
 Setup the folder structure:
 
 ```bash
 export data=/home/data/byod/Annotation/data/
-export structural_annotation_path=~/annotation/structural_annotation
-mkdir -p $structural_annotation_path
+export maker_evidence_path=~/annotation/structural_annotation/maker
+mkdir -p $maker_evidence_path
+cd $maker_evidence_path
 ```
 
 ## Overview
@@ -29,15 +28,7 @@ The first run of Maker will be done without ab-initio predictions. What are your
 
 Let's do this step-by-step:
 
-## Prepare the folder and input data
-
-Create the folder where we will launch this maker run.
-
-```
-cd $structural_annotation_path
-mkdir maker
-cd maker
-```
+## Prepare the input data
 
 Link the raw computes you want to use into your folder. The files you will need are:
 
