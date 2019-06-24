@@ -18,7 +18,6 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-source ~/git/GAAS/profiles/activate_rackham_env
 export data=/proj/g2019006/nobackup/$USER/data
 export structural_annotation_path=/proj/g2019006/nobackup/$USER/structural_annotation
 export RNAseq_assembly_path=/proj/g2019006/nobackup/$USER/RNAseq_assembly
@@ -78,7 +77,6 @@ You should now have 2 repeat files, 1 EST file, 1 protein file, 1 transcript fil
 
 For Maker to use this information, we need create the three config files, typing this command:
 ```
-module load maker/3.01.2-beta
 maker -CTL
 ```
 
@@ -163,7 +161,7 @@ To better understand the different parameters you can have a look [here](http://
 
 If your maker\_opts.ctl is configured correctly, you should be able to run maker:
 ```
-maker -c 8
+mpirun -n 8 maker --ignore_nfs_tmp
 ```
 This will start Maker on 8 cores, if everything is configured correctly.
 This will take a little while and process a lot of output to the screen. Luckily, much of the heavy work - such as repeat masking - are already done, so the total running time is quite manageable, even on a small number of cores.
