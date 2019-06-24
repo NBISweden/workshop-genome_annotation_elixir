@@ -105,7 +105,7 @@ Before running MAKER check you have modified the maker_opts.ctl file properly.
 {% highlight bash %}
 
 #-----Genome (these are always required)  
-genome=<b>genome.fa</b> #genome sequence (fasta file or fasta embeded in GFF3 file)  
+genome=<span style="color:blue">genome.fa</span> #genome sequence (fasta file or fasta embeded in GFF3 file)  
 organism_type=<strong>eukaryotic</strong> #eukaryotic or prokaryotic. Default is eukaryotic
 
 ...
