@@ -18,6 +18,7 @@ source ~/git/GAAS/profiles/activate_rackham_env
 export data=/proj/g2019006/nobackup/$USER/data
 export bacterial_annotation_path=/proj/g2019006/nobackup/$USER/bacterial_annotation
 mkdir -p $bacterial_annotation_path
+export LC_ALL=C
 ```
 
 # Bacterial annotation using Prokka
