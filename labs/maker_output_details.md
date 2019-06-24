@@ -43,7 +43,7 @@ From the folder you have run Maker, run the script called 'maker\_merge\_outputs
 ```
 maker_merge_outputs_from_datastore.pl 
 ```
-This will create a directory called "**maker_output_processed**" containing a long list of files depending on parameters used for running MAKER.  
+This will create a directory called "**maker_output_processed.<name_of_genome_fasta>**" containing a long list of files depending on parameters used for running MAKER.  
 
 ```
 augustus_masked.gff
@@ -65,17 +65,19 @@ genome.all.maker.genemark.transcripts.fasta
 genome.all.maker.noncoding.fasta
 genome.all.maker.non_overlapping_ab_initio.proteins.fasta
 genome.all.maker.non_overlapping_ab_initio.transcripts.fasta
-genome.all.maker.proteins.fasta
 genome.all.maker.snap_masked.proteins.fasta
 genome.all.maker.snap_masked.transcripts.fasta
-genome.all.maker.transcripts.fasta
 genome.all.maker.trnascan.noncoding.fasta
 maker_bopts.ctl
 maker_evm.ctl
 maker_exe.ctl
-maker.gff
+maker_mix.gff
+maker_annotation.gff
+maker_annotation_parsing.log
+maker_annotation_proteins.fasta
+maker_annotation_stat.txt
+maker_annotation_transcripts.fasta
 maker_opts.ctl
-maker_stat.txt
 protein2genome.gff
 protein_gff_protein2genome.gff
 repeat_gff_repeatmasker.gff
@@ -86,7 +88,11 @@ tblastx.gff
 
 Here is a describtion of the most important files:
 
- * **maker.gff** 
+ **maker_mix.gff** 
+
+Original MAKER gff output containing all gff tracks (annotation, protein, repeats, transcripts, etc...). All other gff files you will find in this folder are generated from this file.
+
+ * **maker_annotation.gff** 
 
 It contains the annotation done by maker in ([GFF3 format](http://www.sequenceontology.org/gff3.shtml)). If you use 'less' to read this annotation file, you will see a range of different features:
 ```
@@ -102,13 +108,13 @@ On the sequence with id ´4´, there is a gene feature located from position 241
 On this same sequence, belonging to the gene, is located a transcript from position 24134 to 25665, on the plus strand and with the id 'maker-4-exonerate\_protein2genome-gene-0.0-mRNA-1'. It's quality, or AED score, is 0.09 - which means that the evidence alignments are close to be in perfect agreement with the transcript model.
 And so on.
 
- * **maker_stat.txt**  
+ * **maker_annotation_stat.txt**  
 Statistics of the annotation (maker.gff annotation file).
 
- * **genome.all.maker.transcripts.fasta**  
+ * **maker_annotation_transcripts.fasta**  
 This fasta file contains the nucleotide sequences of the transcripts (mRNA) of the MAKER gene models.
 
- * **genome.all.maker.proteins.fasta** 
+ * **maker_annotation_proteins.fasta** 
 This fasta file contains the amino acid sequences of the proteins translated from the CDS of the MAKER gene models.
 
  * **cdna2genome.gff**  
@@ -152,4 +158,7 @@ Contains the proteins of the raw augustus annotation (not filter by MAKER) in fa
 
  * **maker_xxx.ctl**  
 All the file with **.ctl** extensions are copy of the control files used to produce the result contained in the current folder.
+
+ * **maker_annotation_parsing.log**
+Log output when maker_annotation.gff is parsed to compute the statistics maker_annotation_stat.txt.
 
