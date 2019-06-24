@@ -99,6 +99,7 @@ This time, we do not specify a reference species to be used by augustus, which w
 This will enable gene building directly from the evidence alignments.
 
 <pre>
+#-----Genome (these are always required)
 testing if works
 </pre>
 
