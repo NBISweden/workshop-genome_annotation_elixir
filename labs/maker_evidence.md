@@ -103,7 +103,7 @@ Before running MAKER check you have modified the maker_opts.ctl file properly.
 <details>
 <summary>:key: Click here to see the expected maker_opts.ctl.</summary>
 {% highlight bash %}
-
+{% raw %}
 #-----Genome (these are always required)  
 genome=<span style="color:blue">genome.fa</span> #genome sequence (fasta file or fasta embeded in GFF3 file)  
 organism_type=<strong>eukaryotic</strong> #eukaryotic or prokaryotic. Default is eukaryotic
@@ -148,6 +148,7 @@ snoscan_rrna= #rRNA file to have Snoscan find snoRNAs
 unmask=0 #also run ab-initio prediction programs on unmasked sequence, 1 = yes, 0 = no
 
 ...
+{% endraw %}
 {% endhighlight %}
 </details>  
 To better understand the different parameters you can have a look [here](http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/The_MAKER_control_files_explained)
