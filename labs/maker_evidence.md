@@ -18,9 +18,8 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-export data=/proj/g2019006/nobackup/$USER/data
-export structural_annotation_path=/proj/g2019006/nobackup/$USER/structural_annotation
-export RNAseq_assembly_path=/proj/g2019006/nobackup/$USER/RNAseq_assembly
+export data=/home/data/byod/Annotation/data/
+export structural_annotation_path=~/structural_annotation
 mkdir -p $structural_annotation_path
 ```
 
@@ -58,13 +57,9 @@ Then you will also need EST and protein fasta file:
 ln -s $data/evidence/est.genome.fa
 ln -s $data/evidence/proteins.genome.fa
 ```
-To finish you could use a transcriptome assembly (This is the same as the one you made using Stringtie and/or the Trinity.fasta):
+To finish you could use a transcriptome assembly. We will use a guided-assembly made with Stringtie:
 ```
 ln -s $data/RNAseq/stringtie/transcript_stringtie.gff3 stringtie2genome.gff
-```
-OR
-```
-ln -s $RNAseq_assembly_path/stringtie/transcript_stringtie.gff3 stringtie2genome.gff
 ```
 
 /!\\ Always check that the gff files you provides as protein or EST contains match/match_part (gff alignment type ) feature types rather than genes/transcripts (gff annotation type) otherwise MAKER will not use the contained data properly. Here we have to fix the stringtie gff file.
