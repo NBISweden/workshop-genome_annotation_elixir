@@ -20,7 +20,11 @@ export data=~/annotation/data
 export functional_annotation_path=~/annotation/functional_annotation
 export structural_annotation_path=~/annotation/structural_annotation
 mkdir -p $functional_annotation_path
-chmod +w $data/blastdb/uniprot_dmel/
+```
+You need to have the right to write in the folder blastdb/ for the next exercises so you will copy the folder:
+```bash
+cp ~/annotation/data/blastdb .
+chmod +w blastdb/uniprot_dmel/
 ```
 
 ## Introduction
@@ -67,7 +71,6 @@ Launch Interproscan with the option -h if you want have a look about all the par
 <br> - If you enable the InterPro lookup ('-iprlookup'), you can also get the InterPro identifier corresponding to each motif retrieved: for example, the same motif is known as PF01623 in Pfam and as IPR002568 in InterPro.
 <br> - The option '-pa' provides mappings from matches to pathway information (MetaCyc,UniPathway,KEGG,Reactome).
 ```
-module load InterProScan
 interproscan.sh -i maker_final_prot.fa -t p -dp -pa -appl Pfam,ProDom-2006.1,SuperFamily-1.75 --goterms --iprlookup
 ```
 This analyse will fail.  
@@ -120,10 +123,9 @@ A 'full' Blast analysis can run for several days and consume several GB of Ram. 
 
 ### Perform Blast searches from the command line on Uppmax:
 
-To run Blast on your data, use the Ncbi Blast+ package against a Drosophila-specific database (included in the folder we have provided for you, under **$data/blastdb/uniprot\_dmel/uniprot\_dmel.fa**) - of course, any other NCBI database would also work:
+To run Blast on your data, use the Ncbi Blast+ package against a Drosophila-specific database (included in the folder we have provided for you, under **~/annotation/blastdb/uniprot\_dmel/uniprot\_dmel.fa**) - of course, any other NCBI database would also work:
 ```
-module load blast/2.7.1+
-/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/blastp -db $data/blastdb/uniprot_dmel/uniprot_dmel.fa -query maker_final_prot.fa -outfmt 6 -out blast.out -num_threads 8
+/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/blastp -db ~/annotation/blastdb/uniprot_dmel/uniprot_dmel.fa -query maker_final_prot.fa -outfmt 6 -out blast.out -num_threads 8
 ```
 Against the Drosophila-specific database, the blast search takes about 2 secs per protein request - depending on how many sequences you have submitted, you can make a fairly deducted guess regarding the running time.
 
@@ -131,7 +133,7 @@ Against the Drosophila-specific database, the blast search takes about 2 secs pe
 
 Now you should be able to use the following script:
 ```
-gff3_sp_manage_functional_annotation.pl -f maker_final.interpro/maker_final.gff -b blast.out --db $data/blastdb/uniprot_dmel/uniprot_dmel.fa -o maker_final.interpro.blast  
+gff3_sp_manage_functional_annotation.pl -f maker_final.interpro/maker_final.gff -b blast.out --db ~/annotation/blastdb/blastdb/uniprot_dmel/uniprot_dmel.fa -o maker_final.interpro.blast  
 ```
 That will add the name attribute to the "gene" feature and the description attribute (corresponding to the product information) to the "mRNA" feature into you annotation file.
 The improved annotation is the gff file inside the maker_final.interpro.blast folder.
