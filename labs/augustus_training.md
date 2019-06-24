@@ -74,13 +74,13 @@ We may also filter the gene models by distance from neighboring genes in order t
 To avoid to bias the training and give an exhaustive view of the diversity of gene we have to remove the ones that are too similar to each other. In order to do so, we translate our coding genes into proteins, format the protein fasta file to be able to run a recursive blast and then filter them.
 
 ```
-gff3_sp_extract_sequences.pl -g filter/codingGeneFeatures.filter.longest_cds.complete.gff -f genome.fa -o protein/codingGeneFeatures.filter.longest_cds.proteins.fa
+gff3_sp_extract_sequences.pl -g filter/codingGeneFeatures.filter.longest_cds.complete.gff -f genome.fa -o protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa
 
-makeblastdb -in protein/codingGeneFeatures.filter.longest_cds.proteins.fa -dbtype prot  
+makeblastdb -in protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -dbtype prot  
 
-blastp -query protein/codingGeneFeatures.filter.longest_cds.proteins.fa -db protein/codingGeneFeatures.filter.longest_cds.proteins.fa -outfmt 6 -out blast_recursive/codingGeneFeatures.filter.longest_cds.proteins.fa.blast_recursive
+blastp -query protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -db protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -outfmt 6 -out blast_recursive/codingGeneFeatures.filter.longest_cds.complete.proteins.fa.blast_recursive
 
-gff3_sp_filter_by_mrnaBlastValue_bioperl.pl --gff filter/codingGeneFeatures.filter.longest_cds.gff --blast blast_recursive/codingGeneFeatures.filter.longest_cds.proteins.fa.blast_recursive --outfile nonredundant/codingGeneFeatures.nr.gff
+gff3_sp_filter_by_mrnaBlastValue_bioperl.pl --gff filter/codingGeneFeatures.filter.longest_cds.complete.gff --blast blast_recursive/codingGeneFeatures.filter.longest_cds.complete.proteins.fa.blast_recursive --outfile nonredundant/codingGeneFeatures.nr.gff
 ```
 
 Sequences need to be converted to a simple genbank format.
