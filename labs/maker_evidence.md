@@ -19,7 +19,7 @@ Setup the folder structure:
 
 ```bash
 export data=/home/data/byod/Annotation/data/
-export structural_annotation_path=~/structural_annotation
+export structural_annotation_path=~/annotation/structural_annotation
 mkdir -p $structural_annotation_path
 ```
 
