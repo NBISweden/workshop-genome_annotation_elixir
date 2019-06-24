@@ -11,16 +11,15 @@ objectives:
 ---
 
 # Prerequisites
-For this exercise you need to be logged in to Uppmax.
 
 Setup the folder structure:
 
 ```bash
-source ~/git/GAAS/profiles/activate_rackham_env
-export data=/proj/g2019006/nobackup/$USER/data
-export structural_annotation_path=/proj/g2019006/nobackup/$USER/structural_annotation
-export augustus_training_path=/proj/g2019006/nobackup/$USER/structural_annotation/augustus_training
+export data=/home/data/byod/Annotation/data/
+export augustus_training_path=~/structural_annotation/annotation/augustus_training
+export maker_path=~/annotation/structural_annotation/maker
 mkdir -p $augustus_training_path
+cd $augustus_training_path
 ```
 
 # Introduction
@@ -34,19 +33,14 @@ Maker also support SNAP (Works good, easy to train, not as good as others ab-ini
 
 ## Training Augustus
 
-Move into the folder where we will train Augustus
-```
-cd $augustus_training_path
-```
-
 You will need to symlink the evidence-based annotation (the gff annotation file from the first run of maker) and the genome fasta sequence.
 ```
-ln -s $structural_annotation_path/maker/maker_evidence/maker.gff maker_evidence.gff
+ln -s $maker_path/maker_evidence/maker_annotation.gff maker_evidence.gff
 ln -s $data/genome/genome.fa
 ```
 ## Compile a set of training and test genes
 
-First step is to select only the coding genes from the maker.gff file and remove all tRNA ( :bulb: **Tips**: in this case there no tRNA but it is important to remove them)
+First step is to select only the coding genes from the maker.gff file and remove all tRNA ( :bulb: **Tips**: in this case there is no tRNA but it is important to remove them when present)
 ```
 gff3_sp_splitByLevel2Feature.pl -g maker_evidence.gff -o maker_results_noAbinitio_clean
 ln -s maker_results_noAbinitio_clean/mrna.gff
@@ -65,40 +59,38 @@ Next step, we need to filter the best genes we will use for the training, we nee
 maker_select_models_by_AED_score.pl -f mrna.gff -v 0.3 -t "<=" -o filter/codingGeneFeatures.filter.gff
 ```
 
-We also need to select the longest ORF (we want to use the complete longest genes to avoid creating incorrect and too short genes when we use the abinitio profile )
+We filter to keep only the longest isoform when several are avaialble. 
 ```
 gff3_sp_keep_longest_isoform.pl -f filter/codingGeneFeatures.filter.gff -o filter/codingGeneFeatures.filter.longest_cds.gff
 ```
-/!\\ If you receive this error "Nothing to do... this file doesn't contain any isoform !", it means that you do not have any isoforms. Thus, you can directly use filtered annotation (based on AED) for following step.
+
+We then we check that the gene models are complete (has a start and stop codon), and remove the incomplete ones.
 ```
-cp filter/codingGeneFeatures.filter.gff filter/codingGeneFeatures.filter.longest_cds.gff
+gff3_sp_filter_incomplete_gene_coding_models.pl.pl -f filter/codingGeneFeatures.filter.longest_cds.gff -o filter/codingGeneFeatures.filter.longest_cds.complete.gff
 ```
 
-There are different ways of proceeding after the first selection and we are using "the approached of spliced alignments of protein sequences of the same or a very closely related species" against the assembled genomic sequence.
-In order to do so, we translate our coding genes into proteins, format the protein fasta file to be able to run a recursive blast and then select the best ones.
-Indeed, each sequence can contain one or more genes; the genes can be on either strand. However, the genes must not overlap, and only one transcript per gene is allowed.
-```
-gff3_sp_extract_sequences.pl -g filter/codingGeneFeatures.filter.longest_cds.gff -f genome.fa -o protein/codingGeneFeatures.filter.longest_cds.proteins.fa
+We may also filter the gene models by distance from neighboring genes in order to be sure to have nice intergenic region wihtout genes in it in order to train properly intergenic parameters. Script pending...
 
-module load blast/2.7.1+   
+To avoid to bias the training and give an exhaustive view of the diversity of gene we have to remove the ones that are too similar to each other. In order to do so, we translate our coding genes into proteins, format the protein fasta file to be able to run a recursive blast and then filter them.
+
+```
+gff3_sp_extract_sequences.pl -g filter/codingGeneFeatures.filter.longest_cds.complete.gff -f genome.fa -o protein/codingGeneFeatures.filter.longest_cds.proteins.fa
 
 makeblastdb -in protein/codingGeneFeatures.filter.longest_cds.proteins.fa -dbtype prot  
 
 blastp -query protein/codingGeneFeatures.filter.longest_cds.proteins.fa -db protein/codingGeneFeatures.filter.longest_cds.proteins.fa -outfmt 6 -out blast_recursive/codingGeneFeatures.filter.longest_cds.proteins.fa.blast_recursive
 
 gff3_sp_filter_by_mrnaBlastValue_bioperl.pl --gff filter/codingGeneFeatures.filter.longest_cds.gff --blast blast_recursive/codingGeneFeatures.filter.longest_cds.proteins.fa.blast_recursive --outfile nonredundant/codingGeneFeatures.nr.gff
-
 ```
+
 Sequences need to be converted to a simple genbank format.
 ```
-module load augustus/3.2.3
-
 gff2gbSmallDNA.pl nonredundant/codingGeneFeatures.nr.gff $data/genome/genome.fa 500 gff2genbank/codingGeneFeatures.nr.gbk
 ```
-In order for the test accuracy to be statistically meaningful the test set should also be large enough (100-200 genes).
+
+In theory in order for the test accuracy to be statistically meaningful the test set should also be large enough (100-200 genes).
 You should split the set of gene structures randomly.
 ```
-module load cufflinks/2.2.1
 randomSplit.pl gff2genbank/codingGeneFeatures.nr.gbk 100
 ```
 :question:What happened? how can you solve it? what might be the consequences of it?
@@ -114,10 +106,6 @@ The training will probably not be good!
 Now that you have created a set of gene to train augustus, let's train it!
 
 ```
-module load BUSCO/3.0.2b
-
-source $BUSCO_SETUP
-
 new_species.pl --species=dmel_$USER
 
 etraining --species=dmel_$USER gff2genbank/codingGeneFeatures.nr.gbk.train
