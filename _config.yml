@@ -18,7 +18,7 @@ menu:
   - title: Overview
     url: index
   - title: Exercises
-    exercises
+    url: exercises
   - title: Cheat&nbsp;sheets
     url: files/cheat_sheet/cheat_sheets
 
