@@ -19,7 +19,7 @@ Setup the folder structure:
 
 ```bash
 export data=/home/data/byod/Annotation/data/
-export abinitio_augustus_path=~/annotation/abinitio_augustus
+export abinitio_augustus_path=~/annotation/structural_annotation/abinitio_augustus
 mkdir -p $abinitio_augustus_path
 ```
 
