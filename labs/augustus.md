@@ -18,9 +18,8 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-source ~/git/GAAS/profiles/activate_rackham_env
-export data=/proj/g2019006/nobackup/$USER/data
-export abinitio_augustus_path=/proj/g2019006/nobackup/$USER/abinitio_augustus
+export data=/home/data/byod/Annotation/data/
+export abinitio_augustus_path=~/annotation/abinitio_augustus
 mkdir -p $abinitio_augustus_path
 ```
 
@@ -35,13 +34,7 @@ cd $abinitio_augustus_path
 
 :mortar_board: **Augustus:**
 
-First you need to be sure that you have access to the libraries required to run tools (you need to redo this if you have been logged off).
-
-Second load the needed modules using:  
-``` bash
-module load augustus/3.2.3
-```
-Then you can have a look at the list of species that already have a trained hmm model.  
+Augustus comes with a list of species that already have a trained hmm model available. You can have a look at this list like that:  
 
 ```bash
 augustus --species=help
@@ -80,7 +73,7 @@ Transfer the augustus\_drosophila.gff3 to your computer using scp:
 scp __YOURLOGIN__@rackham.uppmax.uu.se:/proj/g2019006/nobackup/__YOURLOGIN__/abinitio_augustus/augustus_drosophila.gff3 .  
 ```
 Load the file in [Webapollo](http://annotation-prod.scilifelab.se:8080/NBIS_course). [Here find the WebApollo instruction](webapollo_usage)
-<br/>The official Ensembl annotation is available in the genome browser.
+<br/>The official Ensembl annotation is available in the genome browser.  
 :question: How does the Augustus annotation compare with the Ensembl annotation? Are they identical?
 
 :mortar_board: **Augustus with yeast models:**  
@@ -89,14 +82,18 @@ Run augustus on the same genome file but using settings for yeast instead (chang
 <details>
 <summary>:key: Click to see the solution .</summary>
 <code> augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff
-
 </code>
 </details>
 
-Load this result file into Webapollo and compare with your earlier results.
+You can have look at the statistics to have a first impression of what are the differences compared to the previous annotation:
+```bash
+gff3_sp_statistics.pl --gff augustus_saccharomyces.gff
+```
+
+Load this result file into Webapollo and compare with your earlier results.  
 :question: Can you based on this draw any conclusions about how a typical yeast gene differs from a typical Drosophila gene?
 
 # Closing remarks
 
-We have seen how to assess the quality of the assembly and how to launch a quick annotation using an abinitio tool.
+We have seen how to launch a quick annotation using the abinitio tool Augustus.
 We have also seen the importance to use a species specific hmm model into the ab initio tool. Thus, the limitation of this approach is linked to the pre-trained species that are available.
