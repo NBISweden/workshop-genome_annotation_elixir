@@ -1,12 +1,9 @@
 ### Using WebApollo to view annotations
 
-For this course, we have set up a WebApollo installation - as a reminder, the url is [http://annotation-prod.scilifelab.se:8080/NBIS_course](http://annotation-prod.scilifelab.se:8080/NBIS_course/).
+For this course, we have set up a WebApollo installation, the url is [http://annotation-prod.scilifelab.se:8080/NBIS_course](http://annotation-prod.scilifelab.se:8080/NBIS_course/).
 
-Login information are the following:<br/> 
-**username: userX**  (Where X is the number you have been assigned)<br/> 
-**password: demo** <br/> 
-
-When logged in to the page, select the proper project corresponding to the exercice (drosophila_melanogaster_chr4 or drosophila_melanogaster_chr4_jamboree).
+As we will browse public genomes, we do not need to login.
+On the page opened by the url, click on **Browse public genomes** then select **drosophila_melanogaster_chr4**.
 
 In the right side of the browser you will see different tabs available. The most useful one for you will be the "Tracks" one. In this tab will be display the different tracks available for displaying.
 
