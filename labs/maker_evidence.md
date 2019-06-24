@@ -102,8 +102,9 @@ This will enable gene building directly from the evidence alignments.
 Before running MAKER check you have modified the maker_opts.ctl file properly.
 <details>
 <summary>:key: Click here to see the expected maker_opts.ctl.</summary>
-{% highlight bash | escape_once %}
-#-----Genome (these are always required)  
+{% highlight bash %}
+#-----Genome (these are always required)
+{{ <span style="color:blue">genome.fa</span> | escape }}
 genome=<span style="color:blue">genome.fa</span> #genome sequence (fasta file or fasta embeded in GFF3 file)  
 organism_type=<strong>eukaryotic</strong> #eukaryotic or prokaryotic. Default is eukaryotic
 
