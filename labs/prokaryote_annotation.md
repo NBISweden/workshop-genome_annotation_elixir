@@ -14,16 +14,17 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-source ~/git/GAAS/profiles/activate_rackham_env
-export data=/proj/g2019006/nobackup/$USER/data
-export bacterial_annotation_path=/proj/g2019006/nobackup/$USER/bacterial_annotation
+export data=~/annotation/data
+export bacterial_annotation_path=~/annotation/bacterial_annotation
 mkdir -p $bacterial_annotation_path
 export LC_ALL=C
 ```
 
 # Bacterial annotation using Prokka
 
-You will work on 3 different bacterial genomes (one E coli, one chlamydia and one streptococcus).
+We are providing you with 3 different bacterial genomes (one E coli, one chlamydia and one streptococcus).
+You can group 
+
 ```bash
 cd $bacterial_annotation_path
 ln -s $data/raw_computes/Escherichia_coli_genome.fa
