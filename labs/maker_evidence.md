@@ -100,7 +100,7 @@ This will enable gene building directly from the evidence alignments.
 
 <pre>
 #-----Genome (these are always required)
-testing <b>if</b> <strong>works</strong>
+<span style='font-weight: bold'>testing</span> <b>if</b> <strong>works</strong>
 </pre>
 
 :bangbang: **Be sure to have deactivated the parameters _model\_org= #_ and _repeat\_protein= #_ to avoid the heavy work of repeatmasker.**
