@@ -15,9 +15,8 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-source ~/git/GAAS/profiles/activate_rackham_env
-export data=/proj/g2019006/nobackup/$USER/data
-export submission_path=/proj/g2019006/nobackup/$USER/submission
+export data=/home/data/byod/Annotation/data
+export submission_path=~/annotation/submission
 export structural_annotation_path=/proj/g2019006/nobackup/$USER/structural_annotation
 mkdir -p $submission_path
 cd $submission_path
@@ -25,8 +24,6 @@ ln -s $data/genome/genome.fa
 ln -s $structural_annotation_path/maker/complement/maker_abinitio_cplt_by_evidence.gff maker_final.gff
 
 ```
-
-<u>**Setup:**</u> For this exercise you need to be logged in to Uppmax. Follow the [UPPMAX login instructions](uppmax_login).
 
 # Submission to public repository (creation of an EMBL file)
 
@@ -37,24 +34,55 @@ Current state-of-the-art genome annotation tools use the GFF3 format as output, 
 In order to submit to **NCBI**, the use of a tool like [GAG](https://genomeannotation.github.io/GAG/) will save you lot time.  
 In order to submit to **EBI**, the use of a tool like [EMBLmyGFF3](https://github.com/NBISweden/EMBLmyGFF3) will be your best choice.
 
-**Let's prepare your annotation to submit to ENA (EBI)**
-
 In real life, prior to a submission to ENA, you need to create an account and create a project asking a locus_tag for your annotation. You have also to fill lot of metada information related to the assembly and so on. We will skip those tasks using fake information.
 
-First you need to filter and add extra information to your file otherwise submission might fail:
+## Data preparation for submission to ENA (EBI)
+
+First you need polish your annotation to filter or flag suprious cases (e.g short intron < 10 bp) otherwise the submission might fail :
+
 ```bash
-gff3_sp_flag_short_introns.pl --gff maker_final.gff -o maker_final_short_intron_flagged.gff
-gff3_sp_fix_features_locations_duplicated.pl --gff -o maker_final_short_intron_flagged_duplicated_location_fixed.gff
+gff3_sp_flag_short_intron.pl --gff maker_final.gff -o maker_final_short_intron_flagged.gff
+gff3_sp_fix_features_locations_duplicated.pl --gff maker_final_short_intron_flagged.gff -o maker_final_short_intron_flagged_duplicated_location_fixed.gff
 ```
 
-Then you need to download and install EMBLmyGFF3:
+## Data convertion
+
+Then you will run EMBLmyGFF3 but you need first to get rid of exons that are often source of problem. Anyway the exon inforamtion will be redundant because is stored within the mRNA features.
+
 ```bash
-module load python/2.7.6
-pip install --user git+https://github.com/NBISweden/EMBLmyGFF3.git
-~/.local/bin/EMBLmyGFF3 maker_final_short_intron_flagged_duplicated_location_fixed.gff genome.fa -o my_annotation_ready_to_submit.embl
+EMBLmyGFF3 --expose_translations
 ```
 
-Before to try to submit your file, you must check that everything is fine with the official embl-api-validator. You can find it at the [ena repository](https://github.com/enasequence/sequencetools). Download the validator and validate your file.
+Then modify translation_gff_feature_to_embl_feature.json to get rid of exons during the convertion.
+
+```bash
+nano translation_gff_feature_to_embl_feature.json
+```
+<details>
+<summary>:key: Click here to see the expected maker_opts.ctl.</summary>
+{% highlight bash %}
+  ...
+ "exon": {
+   "remove": true
+ },
+  ... 
+{% endhighlight %}
+</details>  
+
+
+You can now run the convertion:
+
+```bash
+EMBLmyGFF3 maker_final_short_intron_flagged_duplicated_location_fixed.gff genome.fa -o my_annotation_ready_to_submit.embl
+```
+
+## Check the sanity of your embl file
+
+If you use the Webin-CLI program (Command Line Submissions) from ENA, it contains the embl-api-validator that will check the sanity of your EMBL file automatically as first step.  
+If you don't use the Webin-CLI program (Interactive Submissions, Programmatic Submissions) or you just want to check the sanity of your file you can use directly the embl-api-validator. You can find it at the [ena repository](https://github.com/enasequence/sequencetools).  
+
+Download the validator and validate your file:
+
 ```bash
 wget http://central.maven.org/maven2/uk/ac/ebi/ena/sequence/embl-api-validator/1.1.265/embl-api-validator-1.1.265.jar
 java -jar embl-api-validator-1.1.265.jar -r my_annotation_ready_to_submit.embl
