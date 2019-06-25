@@ -112,16 +112,16 @@ Look at the different results obtained :
 You could now also visualise all this information using a genome browser, such as [IGV](http://software.broadinstitute.org/software/igv/).
 IGV requires a genome fasta file and any number of annotation files in GTF or GFF3 format (note that GFF3 formatted file tend to look a bit weird in IGV sometimes).
 
-Transfer the gff3 files to your computer using scp:    
+Transfer the gff3 files to your computer using scp (you need to replace XXX by the proper name of the file):    
 ```
-scp __YOURLOGIN__@rackham.uppmax.uu.se:/proj/g2019006/nobackup/__YOURLOGIN__/bacterial_annotation/YOURFILE .
+scp -p 65024 __YOURLOGIN__@tools.mf.uni-lj.si:~/annotation/bacterial_annotation/prokka_Chlamydia/PROKKA_XXXX.gff .
 ```
 
 Congratulations you have annotate bacterial genome!
 
 ## Checking gene set completeness
 
-BUSCO can also be used after the annotation to check if you found the genes you were expected or if something happened during the annotation and you lost genes. To do so you change the option "-m geno" by "-m prot"
+BUSCO can also be used after the annotation to check if you found the genes you were expected or if something happened during the annotation and you lost genes. To do so you change the option "-m geno" by "-m prot" (you need to replace XXX by the proper name of the file).
 
 ```
 module load BUSCO/3.0.2b
