@@ -126,15 +126,9 @@ trna=0 #find tRNAs with tRNAscan, 1 = yes, 0 = no
 snoscan_rrna= #rRNA file to have Snoscan find snoRNAs  
 unmask=0 #also run ab-initio prediction programs on unmasked sequence, 1 = yes, 0 = no
 
-...
-keep_preds=1
-...
-
 {% endhighlight %}
 </details>  
 To better understand the different parameters you can have a look [here](http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/The_MAKER_control_files_explained)
-
-<$USER>
 
 :bangbang: **Be sure to have deactivated the parameters _model\_org= #_ and _repeat\_protein= #_ to avoid the heavy work of repeatmasker.**  
 :bangbang: **Replace <$USER> by your username.**  
