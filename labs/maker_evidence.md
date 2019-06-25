@@ -97,6 +97,7 @@ This will enable gene building directly from the evidence alignments.
 
 :bangbang: **Be sure to have deactivated the parameters _model\_org= #_ and _repeat\_protein= #_ to avoid the heavy work of repeatmasker.**
 Before running MAKER check you have modified the maker_opts.ctl file properly.
+
 <details>
 <summary>:key: Click here to see the expected maker_opts.ctl.</summary>
 {% highlight bash %}
