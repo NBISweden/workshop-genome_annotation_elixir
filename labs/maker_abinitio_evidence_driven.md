@@ -74,26 +74,11 @@ To edit the **maker_opts.ctl** file you can use the nano text editor:
 nano maker_opts.ctl
 ```
 
-This time, we do specify a reference species to be used by augustus, which will enable ab-initio gene finding and keep_preds=1 will also show abinitio prediction not supported by any evidences :  
-
-*augustus\_species=fly* #Augustus gene prediction species model  (:bulb:this is where you can call the database you trained for augustus dmel_$USER )
-
-To be able to use dmel_$USER you need to type in the terminal :
-
-```bash
-AUGUSTUS_CONFIG_PATH=/proj/g2019006/nobackup/$USER/structural_annotation/augustus_training/maker_results_noAbinitio_clean/augustus_config
-```
-
-...
-*keep_preds=1*
-
-We must deactivate the evidence base predidction to enable MAKER to pass those alignaligments/hints to the ab-initio tool (that enables the ab-initio evidence-driven mode. Otherwise it would be pure abinitio).  
-
-<i>protein2genome=0</i>  
-<i>est2genome=0</i>
+This time, we do specify a reference species to be used by **augustus**, which will enable ab-initio gene finding.
 
 
-With these settings, Maker will run augustus to predict gene loci, but inform these predictions with information from the protein and est alignments.
+
+With these settings, Maker will run augustus to predict gene loci, but inform these predictions with information from the protein, trainscripts and est alignments.
 
 Before running MAKER check you have modified the maker_opts.ctl file properly.
 <details>
@@ -151,8 +136,9 @@ To better understand the different parameters you can have a look [here](http://
 
 <$USER>
 
-:bangbang: **Be sure to have deactivated the parameters _model\_org= #_ and _repeat\_protein= #_ to avoid the heavy work of repeatmasker.**
-:bangbang: **Replace <$USER> by your username.**
+:bangbang: **Be sure to have deactivated the parameters _model\_org= #_ and _repeat\_protein= #_ to avoid the heavy work of repeatmasker.**  
+:bangbang: **Replace <$USER> by your username.**  
+:bangbang: **For your information: evidence base prediction and abinitio prediction cannot work together! In case you enable the evidence base prediction (protein2genome=1 and/or est2genome=1) and the abinitio prediction, no warning will be display but only the abinitio prediction willrun.**
 
 ## Run Maker with ab-initio predictions
 
