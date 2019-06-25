@@ -14,7 +14,7 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-export data=~/annotation/data
+export data=/home/data/byod/Annotation/data/
 export bacterial_annotation_path=~/annotation/bacterial_annotation
 mkdir -p $bacterial_annotation_path
 export LC_ALL=C
