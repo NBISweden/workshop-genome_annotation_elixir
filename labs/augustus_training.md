@@ -16,8 +16,8 @@ Setup the folder structure:
 
 ```bash
 export data=/home/data/byod/Annotation/data/
-export augustus_training_path=~/structural_annotation/annotation/augustus_training
-export maker_path=~/annotation/structural_annotation/maker
+export augustus_training_path=~/annotation/structural_annotation/augustus_training
+export maker_evidence_path=~/annotation/structural_annotation/maker_evidence
 mkdir -p $augustus_training_path
 cd $augustus_training_path
 ```
