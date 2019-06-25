@@ -61,14 +61,20 @@ gff3_sp_alignment_output_style.pl --gff stringtie2genome.gff -o stringtie2genome
 
 You should now have 2 repeat files, 1 EST file, 1 protein file, 1 transcript file, and the genome sequence in the working directory.
 
-For Maker to use this information, we need create the three config files, typing this command:
-```
+## Set the MAKER parameters
+
+* Let's start by creating the three MAKER config files:
+
+```bash
 maker -CTL
 ```
 
-You can leave the two files controlling external software behaviors untouched but you need to provide the proper parameters in the file called **maker_opts.ctl**.
+You can leave the two files controlling external software behaviors untouched but you need to provide the proper parameters in the file called **maker_opts.ctl**. Indeed it in that last we tell MAKER what are the files to use, and the options to apply.
+
+
 To edit the **maker_opts.ctl** file you can use the nano text editor:  
-```
+
+```bash
 nano maker_opts.ctl
 ```
 
