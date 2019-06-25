@@ -16,14 +16,14 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-export data=~/annotation/data
+export data=/home/data/byod/Annotation/data/
 export functional_annotation_path=~/annotation/functional_annotation
 export structural_annotation_path=~/annotation/structural_annotation
 mkdir -p $functional_annotation_path
 ```
 You need to have the right to write in the folder blastdb/ for the next exercises so you will copy the folder:
 ```bash
-cp ~/annotation/data/blastdb .
+cp /home/data/byod/Annotation/data/blastdb .
 chmod +w blastdb/uniprot_dmel/
 ```
 
@@ -43,10 +43,12 @@ cd $functional_annotation_path
 ```
 Now you can link the annotation you have done during the structural annotation or use the one provided below. The command will looks like:
 ```
-####ln -s $structural_annotation_path/maker/complement/maker_abinitio_cplt_by_evidence.gff maker_final.gff  
+ln -s ~/annotation/structural_annotation/maker_abinitio/complement/maker_abinitio_cplt_by_evidence.gff maker_final.gff 
+```
+or 
+```
 ln -s $data/annotation/maker_with_abinitio.gff maker_final.gff
 
-ln -s $structural_annotation_path/maker/complement/maker_abinitio_cplt_by_evidence.fa maker_final.faa
 ln -s $data/genome/genome.fa
 ```
 
