@@ -17,8 +17,8 @@ Setup the folder structure:
 
 ```bash
 export data=/home/data/byod/Annotation/data/
-export maker_path=~/annotation/structural_annotation/maker
-mkdir -p $maker_path
+export maker_evidence_path=~/annotation/structural_annotation/maker/maker_evidence
+mkdir -p $maker_evidence_path
 cd $maker_path
 ```
 
