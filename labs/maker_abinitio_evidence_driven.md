@@ -138,7 +138,7 @@ To better understand the different parameters you can have a look [here](http://
 
 :bangbang: **Be sure to have deactivated the parameters _model\_org= #_ and _repeat\_protein= #_ to avoid the heavy work of repeatmasker.**  
 :bangbang: **Replace <$USER> by your username.**  
-:bangbang: **For your information: evidence base prediction and abinitio prediction cannot work together! In case you enable the evidence base prediction (protein2genome=1 and/or est2genome=1) and the abinitio prediction, no warning will be display but only the abinitio prediction willrun.**
+:bangbang: **For your information: evidence base prediction and abinitio prediction cannot work together! In case you enable the evidence base prediction (protein2genome=1 and/or est2genome=1) and the abinitio prediction, no warning will be display but only the abinitio prediction will run.**
 
 ## Run Maker with ab-initio predictions
 
@@ -163,9 +163,10 @@ And again, it is probably best to link the resulting output (maker.gff) to a res
 
 ## Inspect the gene models
 
-To get some statistics of your annotation you could launch :
+To get some statistics of your annotation you could read the **maker_annotation_stat.txt** file from the **maker\_abinitio** folder or launch this script that work on any gff file :
+
 ```
-gff3_sp_statistics.pl --gff maker_abinitio/maker.gff
+gff3_sp_statistics.pl --gff maker_abinitio/maker_annotation.gff
 ```
 
 We could now also visualise the annotation in the Webapollo genome browser.
