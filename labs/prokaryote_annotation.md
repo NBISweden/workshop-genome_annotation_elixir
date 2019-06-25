@@ -23,7 +23,7 @@ export LC_ALL=C
 # Bacterial annotation using Prokka
 
 We are providing you with 3 different bacterial genomes (one E coli, one chlamydia and one streptococcus).
-You can group 
+You should make a group of 3 persons and each of you should do the exercises for 1 species.
 
 ```bash
 cd $bacterial_annotation_path
@@ -47,7 +47,7 @@ module load BUSCO/3.0.2b
 
 source $BUSCO_SETUP
 
-run_BUSCO.py -i Chlamydia_trachomatis_genome.fa -o chlamydia_busco -m geno -c 8 -l /sw/apps/bioinfo/BUSCO/v2_lineage_sets/bacteria_odb9
+run_BUSCO.py -i Chlamydia_trachomatis_genome.fa -o chlamydia_busco -m geno -c 8 -l /home/gaas01/data/opt-byod/busco/lineages/bacteria_odb9
 ```
 Look at the results of busco in short_summary_chlamydia_busco.txt
 
@@ -119,14 +119,14 @@ scp __YOURLOGIN__@rackham.uppmax.uu.se:/proj/g2019006/nobackup/__YOURLOGIN__/bac
 
 Congratulations you have annotate bacterial genome!
 
-## Checking gene set completeness (Optional)
+## Checking gene set completeness
 
 BUSCO can also be used after the annotation to check if you found the genes you were expected or if something happened during the annotation and you lost genes. To do so you change the option "-m geno" by "-m prot"
 
 ```
 module load BUSCO/3.0.2b
 
-run_BUSCO.py -i prokka_Chlamydia/PROKKA_XXXX.faa -o chlamydia_busco_prot -m prot -c 8 -l /sw/apps/bioinfo/BUSCO/v2_lineage_sets/bacteria_odb9
+run_BUSCO.py -i prokka_Chlamydia/PROKKA_XXXX.faa -o chlamydia_busco_prot -m prot -c 8 -l /home/gaas01/data/opt-byod/busco/lineages/bacteria_odb9
 ```
 You can do it for the two other genomes.
 
