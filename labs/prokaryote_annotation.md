@@ -64,8 +64,6 @@ ln -s $data/raw_computes/uniprot-escherichia.fasta
 ln -s $data/raw_computes/uniprot-chlamydia.fasta
 ln -s $data/raw_computes/uniprot-streptococcus.fasta
 
-module load prokka/1.12-12547ca
-
 prokka --help
 ```
 The goal of the exercise is for you to learn how to use prokka and to annotate the 3 assemblies and then visualize them in IGV.  
