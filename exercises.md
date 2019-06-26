@@ -21,10 +21,10 @@ title:  'Exercices'
 **1.15'** [Practical: Annotation_assessment](labs/annotation_assessment)  
 **1.00'** [Practical: Manual curation](labs/manual_curation)  
 **45'** [Lecture: Functional annotation](lectures/FunctionalAnnot_Italy2019.pdf) (Lucile Soler)    
-**1.30'** [Practical: Functional annotation](labs/functional_annotation)  
+**1.15'** [Practical: Functional annotation](labs/functional_annotation)  
 **30'** [Practical: Submission to DB](labs/submission)  
-**30'** [Lecture: Prokaryote annotation](lectures/Bacterial_Annot_Italy2019.pdf) (Lucile Soler)  
-**1.00'** [Practical: Prokaryote annotation and visualization](labs/prokaryote_annotation)  
+**20'** [Lecture: Prokaryote annotation](lectures/Bacterial_Annot_Italy2019.pdf) (Lucile Soler)  
+**50'** [Practical: Prokaryote annotation and visualization](labs/prokaryote_annotation)  
 
 
 
