@@ -95,7 +95,7 @@ Interproscan is really selective on the fasta input data, there should not be an
 You need to rerun the first script with the parameters --cfs and --cis:  
 <br>
 <code>
-gff3_sp_extract_sequences.pl maker_final.gff -f genome.fa --cfs --cis -p -o maker_final_prot.fa 
+gff3_sp_extract_sequences.pl -g maker_final.gff -f genome.fa --cfs --cis -p -o maker_final_prot.fa 
 </code>  
 <br>
 or you can do  
