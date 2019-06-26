@@ -44,7 +44,7 @@ Run BUSCO on the 3 bacterial assemblies provided. We will select the lineage set
 BUSCO is using augustus to run, as we have no administator rights on uppmax we need to source the $BUSCO_SETUP that will copy the augustus folder with the config files.
 
 ```
-run_BUSCO.py -i Chlamydia_trachomatis_genome.fa -o chlamydia_busco -m geno -c 8 -l /home/gaas01/data/opt-byod/busco/lineages/bacteria_odb9
+busco -i Chlamydia_trachomatis_genome.fa -o chlamydia_busco -m geno -c 8 -l /home/gaas01/data/opt-byod/busco/lineages/bacteria_odb9
 ```
 Look at the results of busco in short_summary_chlamydia_busco.txt
 
@@ -111,7 +111,7 @@ IGV requires a genome fasta file and any number of annotation files in GTF or GF
 
 Transfer the gff3 files to your computer using scp (you need to replace XXX by the proper name of the file):    
 ```
-scp -p 65024 __YOURLOGIN__@tools.mf.uni-lj.si:~/annotation/bacterial_annotation/prokka_Chlamydia/PROKKA_XXXX.gff .
+scp -P 65024 __YOURLOGIN__@tools.mf.uni-lj.si:~/annotation/bacterial_annotation/prokka_Chlamydia/PROKKA_XXXX.gff .
 ```
 
 Congratulations you have annotate bacterial genome!
@@ -121,9 +121,7 @@ Congratulations you have annotate bacterial genome!
 BUSCO can also be used after the annotation to check if you found the genes you were expected or if something happened during the annotation and you lost genes. To do so you change the option "-m geno" by "-m prot" (you need to replace XXX by the proper name of the file).
 
 ```
-module load BUSCO/3.0.2b
-
-run_BUSCO.py -i prokka_Chlamydia/PROKKA_XXXX.faa -o chlamydia_busco_prot -m prot -c 8 -l /home/gaas01/data/opt-byod/busco/lineages/bacteria_odb9
+busco -i prokka_Chlamydia/PROKKA_XXXX.faa -o chlamydia_busco_prot -m prot -c 8 -l /home/gaas01/data/opt-byod/busco/lineages/bacteria_odb9
 ```
 You can do it for the two other genomes.
 
