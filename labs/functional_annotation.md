@@ -49,7 +49,9 @@ ln -s ~/annotation/structural_annotation/maker_abinitio/complement/maker_abiniti
 or 
 ```
 ln -s $data/annotation/maker_with_abinitio.gff maker_final.gff
-
+```
+then
+```
 ln -s $data/genome/genome.fa
 ```
 
