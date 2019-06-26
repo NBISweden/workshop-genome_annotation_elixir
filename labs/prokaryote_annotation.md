@@ -1,7 +1,7 @@
 ---
 layout: default-overview
 title: Prokaryote annotation
-exercises: 60
+exercises: 50
 questions:
   - How to run bacterial annotation?
   - What should I look in my assembly to go forward
