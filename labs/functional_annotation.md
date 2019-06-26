@@ -17,6 +17,7 @@ Setup the folder structure:
 
 ```bash
 export data=/home/data/byod/Annotation/data/
+cd ~/annotation/
 export functional_annotation_path=~/annotation/functional_annotation
 export structural_annotation_path=~/annotation/structural_annotation
 mkdir -p $functional_annotation_path
