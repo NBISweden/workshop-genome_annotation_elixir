@@ -11,7 +11,7 @@ objectives:
 ---
 
 # Prerequisites
-For this exercise you need to be logged in to Uppmax.
+For this exercise you need to be logged in to the VM.
 
 Setup the folder structure:
 
