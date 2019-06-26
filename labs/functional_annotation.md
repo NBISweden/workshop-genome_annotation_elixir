@@ -174,7 +174,7 @@ gff3_sp_webApollo_compliant.pl -gff maker_final.interpro.blast.ID/maker_final.gf
 
 Transfer the final_annotation.gff file to your computer using scp in a new terminal:
 ```
-scp -p 65024 __YOURLOGIN__@tools.mf.uni-lj.si:~/annotationfunctional_annotation/final_annotation.gff .
+scp -P 65024 __YOURLOGIN__@tools.mf.uni-lj.si:~/annotation/functional_annotation/final_annotation.gff .
 ```
 
 Load the file in into the genome portal called drosophila_melanogaster_chr4 in the Webapollo genome browser available at the address [http://annotation-prod.scilifelab.se:8080/NBIS_course/](http://annotation-prod.scilifelab.se:8080/NBIS_course/). [Here find the WebApollo instruction](labs/webapollo_usage.md)
