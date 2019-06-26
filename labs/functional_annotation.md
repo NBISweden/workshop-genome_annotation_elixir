@@ -1,7 +1,7 @@
 ---
 layout: default-overview
 title: Functional annotation
-exercises: 1h30
+exercises: 1h15
 questions:
   - What is needed for functional annotation?
   - How to do functional annotation?
