@@ -24,7 +24,7 @@ mkdir -p $functional_annotation_path
 ```
 You need to have the right to write in the folder blastdb/ for the next exercises so you will copy the folder:
 ```bash
-cp /home/data/byod/Annotation/data/blastdb .
+cp -r /home/data/byod/Annotation/data/blastdb .
 chmod +w blastdb/uniprot_dmel/
 ```
 
