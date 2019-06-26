@@ -16,8 +16,8 @@ For this exercise you need to be logged in to the VM.
 Setup the folder structure:
 
 ```bash
-export data=/home/data/byod/Annotation/data/
 cd ~/annotation/
+export data=/home/data/byod/Annotation/data/
 export functional_annotation_path=~/annotation/functional_annotation
 export structural_annotation_path=~/annotation/structural_annotation
 mkdir -p $functional_annotation_path
