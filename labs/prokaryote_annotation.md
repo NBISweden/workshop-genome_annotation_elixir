@@ -60,7 +60,6 @@ Prokka is a really easy tool to use for bacterial annotation.
 You are going to use the same assemblies you used previously for Busco and link protein sequence of the three species
 
 ```
-module unload BUSCO
 ln -s $data/raw_computes/uniprot-escherichia.fasta
 ln -s $data/raw_computes/uniprot-chlamydia.fasta
 ln -s $data/raw_computes/uniprot-streptococcus.fasta
