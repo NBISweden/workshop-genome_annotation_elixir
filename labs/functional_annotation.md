@@ -138,7 +138,7 @@ Against the Drosophila-specific database, the blast search takes about 2 secs pe
 
 Now you should be able to use the following script:
 ```
-gff3_sp_manage_functional_annotation.pl -f maker_final.interpro/maker_final.gff -b blast.out --db ~/annotation/blastdb/blastdb/uniprot_dmel/uniprot_dmel.fa -o maker_final.interpro.blast  
+gff3_sp_manage_functional_annotation.pl -f maker_final.interpro/maker_final.gff -b blast.out --db ~/annotation/blastdb/uniprot_dmel/uniprot_dmel.fa -o maker_final.interpro.blast  
 ```
 That will add the name attribute to the "gene" feature and the description attribute (corresponding to the product information) to the "mRNA" feature into you annotation file.
 The improved annotation is the gff file inside the maker_final.interpro.blast folder.
