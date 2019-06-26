@@ -1,0 +1,2 @@
+[submodule "workshop-common"]
+	branch = feature/elixir_mode
