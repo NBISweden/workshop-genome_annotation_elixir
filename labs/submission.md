@@ -17,11 +17,10 @@ Setup the folder structure:
 ```bash
 export data=/home/data/byod/Annotation/data
 export submission_path=~/annotation/submission
-export structural_annotation_path=/proj/g2019006/nobackup/$USER/structural_annotation
 mkdir -p $submission_path
 cd $submission_path
 ln -s $data/genome/genome.fa
-ln -s $structural_annotation_path/maker/complement/maker_abinitio_cplt_by_evidence.gff maker_final.gff
+ln -s ~/annotation/functional_annotation/maker_final.gff
 
 ```
 
