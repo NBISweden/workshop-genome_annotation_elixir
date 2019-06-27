@@ -129,13 +129,12 @@ cd compare_ref
 Then, copy or sym-link the EnsEMBL reference annotation as well as yours:
 ```
 ln -s $abinitio_augustus_path/augustus_drosophila.gff
-ln -s $structural_annotation_path/maker/complement/maker_abinitio_cplt_by_evidence.gff
+ln -s ../complement/maker_abinitio_cplt_by_evidence.gff
 ln -s $data/annotation/ensembl.genome.gff
 ```
 
 Now we have to sort any GFF3-formatted annotation in a way that genometools accepts:
 ```
-module load GenomeTools/1.5.9
 gt gff3 -sort augustus_drosophila.gff > augustus_drosophila.sorted.gff
 gt gff3 -sort maker_abinitio_cplt_by_evidence.gff > maker_abinitio_cplt_by_evidence.sorted.gff
 gt gff3 -sort ensembl.genome.gff > ensembl.sorted.gff
@@ -271,10 +270,10 @@ nucleotide specificity (CDS level):  94.55% (TP=215303/(TP=215303 + FP=12412))<b
 A AED value of 0 means the whole gene model is supported by evidence while 1 means there is none. Let's try to select only models with good congruency with evidence lines, AED <0.3.
 
 ```
-cd $structural_annotation_path/maker/
+cd $assessment
 mkdir filter
 cd filter
-ln -s $structural_annotation_path/maker/complement/maker_abinitio_cplt_by_evidence.gff
+ln -s ../complement/maker_abinitio_cplt_by_evidence.gff
 maker_select_models_by_AED_score.pl -f maker_abinitio_cplt_by_evidence.gff -v 0.3 -t "<" -o result
 ```
 
