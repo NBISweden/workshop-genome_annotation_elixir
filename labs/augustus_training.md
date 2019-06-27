@@ -36,7 +36,7 @@ Maker also support SNAP (Works good, easy to train, not as good as others ab-ini
 You will need to symlink the evidence-based annotation (the gff annotation file from the first run of maker) and the genome fasta sequence.
 
 ```bash
-ln -s $maker_path/maker_evidence/maker_annotation.gff maker_evidence.gff
+ln -s $maker_path/maker_evidence_genome/maker_annotation.gff maker_evidence.gff
 ln -s $data/genome/genome.fa
 ```
 
