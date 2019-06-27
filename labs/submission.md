@@ -20,7 +20,7 @@ export submission_path=~/annotation/submission
 mkdir -p $submission_path
 cd $submission_path
 ln -s $data/genome/genome.fa
-ln -s ~/annotation/functional_annotation/maker_final.gff
+ln -s ~/annotation/functional_annotation/final_annotation.gff
 
 ```
 
@@ -40,7 +40,7 @@ In real life, prior to a submission to ENA, you need to create an account and cr
 First you need polish your annotation to filter or flag suprious cases (e.g short intron < 10 bp) otherwise the submission might fail :
 
 ```bash
-gff3_sp_flag_short_intron.pl --gff maker_final.gff -o maker_final_short_intron_flagged.gff
+gff3_sp_flag_short_intron.pl --gff final_annotation.gff -o maker_final_short_intron_flagged.gff
 gff3_sp_fix_features_locations_duplicated.pl --gff maker_final_short_intron_flagged.gff -o maker_final_short_intron_flagged_duplicated_location_fixed.gff
 ```
 
