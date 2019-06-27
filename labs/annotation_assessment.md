@@ -18,10 +18,10 @@ Setup the folder structure:
 
 ```bash
 export data=/home/data/byod/Annotation/data
-export complement=~/annotation/structural_annotation/complement
+export assessment=~/annotation/structural_annotation/assessment
 export abinitio_augustus_path=~/annotation/structural_annotation/abinitio_augustus
-mkdir -p $complement
-cd $complement
+mkdir -p $assessment
+cd $assessment
 ```
 
 # Introduction
@@ -54,8 +54,23 @@ It isn't so much a quality check as a measure of congruency - i.e. the resulting
 
 ### Gene number
 
+Prepare the folder and get the data needed.  
+ 
+```bash
+cd $assessment
+mkdir complement
+cd complement
+ln -s ../../maker_evidence/maker_evidence_genome/maker_annotation.gff maker_evidence.gff
+ln -s ../../maker_abinitio/maker_abinitio_genome/maker_annotation.gff maker_abinitio.gff
+```
+
 As already seen previously you can have a look at the statistics of an annotation with the **gff3_sp_statistics.pl** script.  
 As you will note, there are some differences - and of course, this is expected, since different approaches has been used to generate them. 
+
+```bash
+gff3_sp_statistics.pl --gff maker_evidence.gff -o maker_evidence_stat.txt
+gff3_sp_statistics.pl --gff maker_abinitio.gff -o maker_abinitio_stat.txt
+```
 
 Different methods can predict genes that are not in common (non-overlaping). To increase the sensitivity it could be important to create a non-redundant concatenated gene set. Let's do it for the MAKER annotations:
 ```
@@ -63,20 +78,22 @@ gff3_sp_complement_annotations.pl --ref maker_abinitio.gff --add maker_evidence.
 ```
 :question:How many genes have been added in this new maker_abinitio_cplt_by_evidence.gff annotation ?
 
-Let's extract the proteins form this new annotation:
-```
-ln -s $data/genome/genome.fa
-gff3_sp_extract_sequences.pl -gff maker_abinitio_cplt_by_evidence.gff -f genome.fa -p -o maker_abinitio_cplt_by_evidence.fa
-```
-
 ### BUSCO
 
 BUSCO is run before annotating to check if the assembly is good and therefore if the annotation will be good. It is also run after the structural annotation to then compare if we indeed find a number of genes corresponding of the first run of busco.
 
+ Prepare the folder and get the data needed.  
+ ```bash
+cd $assessment
+mkdir busco
+cd busco
+ln -s $data/genome/genome.fa
+ln -s $assessment/complement/maker_abinitio_cplt_by_evidence.gff
+ ```
  * BUSCO on the assembly
  
  ```bash
-https://busco.ezlab.org/datasets/arthropoda_odb9.tar.gz
+wget https://busco.ezlab.org/datasets/arthropoda_odb9.tar.gz
 tar xvzf arthropoda_odb9.tar.gz
 busco -i genome.fa -o busco_genome -m genome -c 8 -l arthropoda_odb9
 ```
@@ -84,6 +101,11 @@ busco -i genome.fa -o busco_genome -m genome -c 8 -l arthropoda_odb9
 The results is in run_busco_genome/short_summary_busco_genome.txt.
 
  * BUSCO on the annotation
+ 
+First, let's extract the proteins form the annotation:
+```
+gff3_sp_extract_sequences.pl -gff maker_abinitio_cplt_by_evidence.gff -f genome.fa -p -o maker_abinitio_cplt_by_evidence.fa
+```
  
 ```bash
 busco -i maker_abinitio_cplt_by_evidence.fa -o busco_annotation -m prot -c 8 -l arthropoda_odb9
@@ -99,7 +121,7 @@ As with many tasks within bioinformatics, it is always a great idea to first loo
 
 First create the working folder:
 ```
-cd $structural_annotation_path/maker
+cd $assessment
 mkdir compare_ref
 cd compare_ref
 ```
