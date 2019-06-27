@@ -19,7 +19,7 @@ Setup the folder structure:
 export data=/home/data/byod/Annotation/data/
 export maker_evidence_path=~/annotation/structural_annotation/maker_evidence
 mkdir -p $maker_evidence_path
-cd $maker_path
+cd $maker_evidence_path
 ```
 
 ## Overview
