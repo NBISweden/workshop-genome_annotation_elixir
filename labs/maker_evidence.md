@@ -184,7 +184,7 @@ This should create a **maker\_evidence** folder containing all computed data inc
 
 To get some statistics of your annotation you could read the **maker_annotation_stat.txt** file from the **maker\_evidence** folder or launch this script that work on any gff file :
 ```
-gff3_sp_statistics.pl --gff maker_evidence/maker_annotation.gff
+gff3_sp_statistics.pl --gff maker_evidence_genome/maker_annotation.gff
 ```
 
 We could now also visualise the annotation in the Webapollo genome browser.
