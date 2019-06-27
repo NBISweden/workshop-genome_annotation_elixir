@@ -74,7 +74,7 @@ gff3_sp_keep_longest_isoform.pl -f filter/codingGeneFeatures.filter.gff -o filte
 * We then check that the gene models are complete (has a start and stop codon), and remove the incomplete ones.
 
 ```bash
-gff3_sp_filter_incomplete_gene_coding_models.pl.pl -f filter/codingGeneFeatures.filter.longest_cds.gff -o filter/codingGeneFeatures.filter.longest_cds.complete.gff
+gff3_sp_filter_incomplete_gene_coding_models.pl --gff filter/codingGeneFeatures.filter.longest_cds.gff -f genome.fa -o filter/codingGeneFeatures.filter.longest_cds.complete.gff
 ```
 
 * We may also filter the gene models by distance from neighboring genes in order to be sure to have nice intergenic region wihtout genes in it in order to train properly intergenic parameters. Script pending...
