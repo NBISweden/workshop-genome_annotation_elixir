@@ -44,7 +44,7 @@ cd $functional_annotation_path
 ```
 Now you can link the annotation you have done during the structural annotation or use the one provided below. The command will looks like:
 ```
-ln -s ~/annotation/structural_annotation/maker_abinitio/complement/maker_abinitio_cplt_by_evidence.gff maker_final.gff 
+ln -s ~/annotation/structural_annotation/assessment/complement/maker_abinitio_cplt_by_evidence.gff maker_final.gff 
 ```
 or 
 ```
