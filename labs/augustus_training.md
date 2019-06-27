@@ -84,9 +84,9 @@ gff3_sp_filter_incomplete_gene_coding_models.pl --gff filter/codingGeneFeatures.
 ```bash
 gff3_sp_extract_sequences.pl -g filter/codingGeneFeatures.filter.longest_cds.complete.gff -f genome.fa -o protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa
 
-makeblastdb -in protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -dbtype prot  
+/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/makeblastdb -in protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -dbtype prot  
 
-blastp -query protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -db protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -outfmt 6 -out blast_recursive/codingGeneFeatures.filter.longest_cds.complete.proteins.fa.blast_recursive
+/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/blastp -query protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -db protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -outfmt 6 -out blast_recursive/codingGeneFeatures.filter.longest_cds.complete.proteins.fa.blast_recursive
 
 gff3_sp_filter_by_mrnaBlastValue_bioperl.pl --gff filter/codingGeneFeatures.filter.longest_cds.complete.gff --blast blast_recursive/codingGeneFeatures.filter.longest_cds.complete.proteins.fa.blast_recursive --outfile nonredundant/codingGeneFeatures.nr.gff
 ```
