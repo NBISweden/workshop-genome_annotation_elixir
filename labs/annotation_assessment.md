@@ -74,17 +74,22 @@ gff3_sp_extract_sequences.pl -gff maker_abinitio_cplt_by_evidence.gff -f genome.
 BUSCO is run before annotating to check if the assembly is good and therefore if the annotation will be good. It is also run after the structural annotation to then compare if we indeed find a number of genes corresponding of the first run of busco.
 
  * BUSCO on the assembly
- ```
+ 
+ ```bash
 https://busco.ezlab.org/datasets/arthropoda_odb9.tar.gz
 tar xvzf arthropoda_odb9.tar.gz
 busco -i genome.fa -o busco_genome -m genome -c 8 -l arthropoda_odb9
 ```
+
+The results is in run_busco_genome/short_summary_busco_genome.txt.
+
  * BUSCO on the annotation
-```
+ 
+```bash
 busco -i maker_abinitio_cplt_by_evidence.fa -o busco_annotation -m prot -c 8 -l arthropoda_odb9
 ```
 
-The results are in run_busco_genome/short_summary_busco_genome.txt  and run_busco_annotation/short_summary_busco_genome.txt.  
+The results is in run_busco_annotation/short_summary_busco_genome.txt.  
 
 :question:if you compare the busco results what do you see?
 
