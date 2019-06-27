@@ -17,10 +17,11 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-source ~/git/GAAS/profiles/activate_rackham_env
-export data=/proj/g2019006/nobackup/$USER/data
-export structural_annotation_path=/proj/g2019006/nobackup/$USER/structural_annotation
-export abinitio_augustus_path=/proj/g2019006/nobackup/$USER/abinitio_augustus
+export data=/home/data/byod/Annotation/data
+export complement=~/annotation/structural_annotation/complement
+export abinitio_augustus_path=~/annotation/structural_annotation/abinitio_augustus
+mkdir -p $complement
+cd $complement
 ```
 
 # Introduction
@@ -39,14 +40,11 @@ In this exercise you will handle different annotation files:
 
 Evaluating an annotation can be done in different ways:
 
-• Looking at the number of genes  
-It isn't so much a quality check as a measure of congruency - i.e. the resulting numbers don't tell you which of the two gene builds is more correct.
-
-• Comparison with another annotation  
- It does not help neither to see the quality of your annotation but could help to understand the major differences between several annotations.
+• Looking at the number of genes 
+It isn't so much a quality check as a measure of congruency - i.e. the resulting numbers don't tell you which of the two gene builds is more correct. Based on the known genomes from related species you can at least estimate if you have under or over-predicted gene content.
 
 • Comparison against a reference
- This case is really rare in real life.
+ This case is really rare in real life except if you work on model organisms. Here our reference annotation comes from EnsEMBL that have originally imported it from FlyBase. There is a huge difference between this annotation and ours. Obviously, a lot of manual labor and much more data has been put into the FlyBase annotation - and this highlights a common limitation of any computational pipeline. You will simply never reach the same level of quality and detail as seen in a manually curated reference annotation. 
 
 • Running busco on proteins obtained from the annotation  
  It provides a nice feeling about the quality of the annotation but is biased by the fact it focus only on well conserved genes between species during evolution. So, what about species specific genes ?
@@ -57,25 +55,9 @@ It isn't so much a quality check as a measure of congruency - i.e. the resulting
 ### Gene number
 
 As already seen previously you can have a look at the statistics of an annotation with the **gff3_sp_statistics.pl** script.  
-As you will note, there are some differences - and of course, this is expected, since different approaches has been used to generate them. The EnsEMBL annotation is originally imported from FlyBase. Obviously, a lot of manual labor and much more data has been put into the FlyBase annotation - and this highlights a common limitation of any computational pipeline. You will simply never reach the same level of quality and detail as seen in a manually curated reference annotation.
+As you will note, there are some differences - and of course, this is expected, since different approaches has been used to generate them. 
 
-### Comparison with another annotation
-
-We will compare the two annotation made with MAKER: the evidence one and the abinitio one.
-```
-cd $structural_annotation_path/maker
-mkdir complement
-cd complement
-ln -s ../maker_evidence/maker.gff maker_evidence.gff
-ln -s ../maker_abinitio/maker.gff maker_abinitio.gff
-maker_checkFusionSplitBetweenTwoBuilds.pl --ref maker_evidence.gff --tar maker_abinitio.gff --out maker_evidence_compare_to_abinitio
-cat maker_evidence_compare_to_abinitio/resume.txt
-```
-
-:question:How many genes are specific to each annotation ?  
-:question:How many genes from the evidence annotation have been merged/fused together by the abinitio annotation ?  
-
-Those two annotations have genes that are not in common (non-overlaping). Let's create a non-redundant concatenated gene set:
+Different methods can predict genes that are not in common (non-overlaping). To increase the sensitivity it could be important to create a non-redundant concatenated gene set. Let's do it for the MAKER annotations:
 ```
 gff3_sp_complement_annotations.pl --ref maker_abinitio.gff --add maker_evidence.gff -o maker_abinitio_cplt_by_evidence.gff
 ```
@@ -91,20 +73,20 @@ gff3_sp_extract_sequences.pl -gff maker_abinitio_cplt_by_evidence.gff -f genome.
 
 BUSCO is run before annotating to check if the assembly is good and therefore if the annotation will be good. It is also run after the structural annotation to then compare if we indeed find a number of genes corresponding of the first run of busco.
 
-You will need to link the protein file created by maker on the run with the ab-initio
+ * BUSCO on the assembly
+ ```
+https://busco.ezlab.org/datasets/arthropoda_odb9.tar.gz
+tar xvzf arthropoda_odb9.tar.gz
+busco -i genome.fa -o busco_genome -m genome -c 8 -l arthropoda_odb9
 ```
-cd $structural_annotation_path/maker
-mkdir busco
-cd busco
-
-ln -s  $structural_annotation_path/maker/complement/maker_abinitio_cplt_by_evidence.fa
-
-module load BUSCO/3.0.2b
-source $BUSCO_SETUP
-
-run_BUSCO.py -i maker_abinitio_cplt_by_evidence.fa -o dmel_maker_abinitio_cplt_by_evidence -m prot -c 8 -l /sw/apps/bioinfo/BUSCO/v2_lineage_sets/arthropoda_odb9
+ * BUSCO on the annotation
 ```
- :question:if you compare with you first busco results what do you see?
+busco -i maker_abinitio_cplt_by_evidence.fa -o busco_annotation -m prot -c 8 -l arthropoda_odb9
+```
+
+The results are in run_busco_genome/short_summary_busco_genome.txt  and run_busco_annotation/short_summary_busco_genome.txt.  
+
+:question:if you compare the busco results what do you see?
 
 ### Comparison with the reference annotation
 
