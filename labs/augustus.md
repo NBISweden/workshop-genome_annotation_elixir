@@ -62,9 +62,9 @@ gff3_sp_statistics.pl --gff augustus_drosophila.gff
 :question:How many genes have you annotated?
 
 
-Transfer the augustus\_drosophila.gff3 to your computer using scp:    
+Transfer the augustus\_drosophila.gff3 to your computer using scp from a local terminal:    
 ```bash
-scp __YOURLOGIN__@rackham.uppmax.uu.se:/proj/g2019006/nobackup/__YOURLOGIN__/abinitio_augustus/augustus_drosophila.gff3 .  
+scp -P 65024 __YOURLOGIN__@tools.mf.uni-lj.si:~/annotation/structural_annotation/abinitio_augustus/abinitio_augustus/augustus_drosophila.gff3 .  
 ```
 Load the file in [Webapollo (Here find the instruction)](webapollo_usage)
 <br/>The official Ensembl annotation is available in the genome browser.  
