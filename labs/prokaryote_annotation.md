@@ -118,7 +118,7 @@ Congratulations you have annotate bacterial genome!
 BUSCO can also be used after the annotation to check if you found the genes you were expected or if something happened during the annotation and you lost genes. To do so you change the option "-m geno" by "-m prot" (you need to replace XXX by the proper name of the file).
 
 ```
-busco -i prokka_Chlamydia/PROKKA_XXXX.faa -o chlamydia_busco_prot -m prot -c 8 -l /home/gaas01/data/opt-byod/busco/lineages/bacteria_odb9
+busco -i prokka_Chlamydia/PROKKA_XXXX.faa -o chlamydia_busco_prot -m prot -c 8 -l /home/data/opt-byod/busco/lineages/bacteria_odb9
 ```
 You can do it for the two other genomes.
 
