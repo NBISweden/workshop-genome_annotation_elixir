@@ -108,7 +108,7 @@ IGV requires a genome fasta file and any number of annotation files in GTF or GF
 
 Transfer the gff3 files to your computer using scp (you need to replace XXX by the proper name of the file):    
 ```
-scp -P 65024 __YOURLOGIN__@tools.mf.uni-lj.si:~/annotation/bacterial_annotation/prokka_Chlamydia/PROKKA_XXXX.gff .
+scp -P <port-number> <username>@<host>:~/annotation/bacterial_annotation/prokka_Chlamydia/PROKKA_XXXX.gff .
 ```
 
 Congratulations you have annotate bacterial genome!
