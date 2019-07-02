@@ -21,6 +21,27 @@ mkdir -p $bacterial_annotation_path
 export LC_ALL=C
 ```
 
+In order to use the blast functionality from within Prokka (see below) we need to edit the file "/home/export_paths/export_path.sh" and comment out this line:
+
+```
+export PATH=$PATH:/usr/local/WUBlast
+```
+the line will then look like this :
+
+```
+#export PATH=$PATH:/usr/local/WUBlast
+```
+
+After editing the file, please log out of the terminal and then log back in.
+
+Execute the command blastn -version and inspect the output. It should be something like:
+
+```
+tblastn: 2.9.0+
+Package: blast 2.9.0, build Jun 13 2019
+```
+
+
 # Bacterial annotation using Prokka
 
 We are providing you with 3 different bacterial genomes (one E coli, one chlamydia and one streptococcus).
