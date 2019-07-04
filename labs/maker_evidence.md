@@ -153,7 +153,7 @@ To better understand the different parameters you can have a look [here](http://
 
 If your maker\_opts.ctl is configured correctly, you should be able to run maker:
 ```
-mpirun -n 8 maker --ignore_nfs_tmp
+mpirun -n 4 maker --ignore_nfs_tmp
 ```
 This will start Maker on 8 cores, if everything is configured correctly.
 This will take a little while and process a lot of output to the screen. Luckily, much of the heavy work - such as repeat masking - are already done, so the total running time is quite manageable, even on a small number of cores.
