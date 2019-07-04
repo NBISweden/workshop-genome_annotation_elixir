@@ -138,7 +138,7 @@ To better understand the different parameters you can have a look [here](http://
 
 With everything configured, run Maker as you did for the previous analysis:
 ```
-mpirun -n 8 maker --ignore_nfs_tmp
+mpirun -n 4 maker --ignore_nfs_tmp
 ```
 We probably expect this to take a little bit longer than before, since we have added another step to our analysis.
 
