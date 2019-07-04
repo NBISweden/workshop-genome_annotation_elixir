@@ -130,7 +130,7 @@ A 'full' Blast analysis can run for several days and consume several GB of Ram. 
 
 To run Blast on your data, use the Ncbi Blast+ package against a Drosophila-specific database (included in the folder we have provided for you, under **~/annotation/blastdb/uniprot\_dmel/uniprot\_dmel.fa**) - of course, any other NCBI database would also work:
 ```
-/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/blastp -db ~/annotation/blastdb/uniprot_dmel/uniprot_dmel.fa -query maker_final_prot.fa -outfmt 6 -out blast.out -num_threads 8
+/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/blastp -db ~/annotation/blastdb/uniprot_dmel/uniprot_dmel.fa -query maker_final_prot.fa -outfmt 6 -out blast.out -num_threads 4
 ```
 Against the Drosophila-specific database, the blast search takes about 2 secs per protein request - depending on how many sequences you have submitted, you can make a fairly deducted guess regarding the running time.
 
