@@ -1,6 +1,6 @@
 ---
 layout: default-overview
-title: Making an abinitio evidence-driven annotation with MAKER
+title: Making an <i>ab initio</i> evidence-driven annotation with MAKER
 exercises: 1h30
 questions:
   - How to create structural annotation with evidence and abinitio?
