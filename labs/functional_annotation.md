@@ -177,7 +177,7 @@ Transfer the final_annotation.gff file to your computer using scp in a new termi
 scp -P <port-number> <username>@<host>:~/annotation/functional_annotation/final_annotation.gff .
 ```
 
-Load the file in into the genome portal called drosophila_melanogaster_chr4 in the Webapollo genome browser available at the address [http://annotation-prod.scilifelab.se:8080/NBIS_course/](http://annotation-prod.scilifelab.se:8080/NBIS_course/). [Here find the WebApollo instruction](labs/webapollo_usage.md)
+Load the file in into the genome portal called drosophila_melanogaster_chr4 in the Webapollo genome browser available at the address [http://annotation-prod.scilifelab.se:8080/NBIS_course/](http://annotation-prod.scilifelab.se:8080/NBIS_course/). [Here find the WebApollo instruction](webapollo_usage)
 
 Wonderfull ! isn't it ?
 
