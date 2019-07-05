@@ -124,15 +124,8 @@ Look at the different results obtained :
 :question:Do you see any differences with the different options and no options you used? (like for instance with or without --proteins)
 <br>:question:Did you get the annotation you expected after the busco results?
 
-You could now also visualise all this information using a genome browser, such as [IGV](http://software.broadinstitute.org/software/igv/).
-IGV requires a genome fasta file and any number of annotation files in GTF or GFF3 format (note that GFF3 formatted file tend to look a bit weird in IGV sometimes).
 
-Transfer the gff3 files to your computer using scp (you need to replace XXX by the proper name of the file):    
-```
-scp -P <port-number> <username>@<host>:~/annotation/bacterial_annotation/prokka_Chlamydia/PROKKA_XXXX.gff .
-```
-
-Congratulations you have annotate bacterial genome!
+Congratulations you have annotated bacterial genomes!
 
 ## Checking gene set completeness
 
