@@ -8,6 +8,7 @@ questions:
 objectives:
   - understand the different tools/processes to do a functional annotation
   - be able to run a functional annotation
+  - understand the output
 ---
 
 # Prerequisites
