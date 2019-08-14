@@ -77,18 +77,22 @@ gff3_sp_keep_longest_isoform.pl -f filter/codingGeneFeatures.filter.gff -o filte
 gff3_sp_filter_incomplete_gene_coding_models.pl --gff filter/codingGeneFeatures.filter.longest_cds.gff -f genome.fa -o filter/codingGeneFeatures.filter.longest_cds.complete.gff
 ```
 
-* We may also filter the gene models by distance from neighboring genes in order to be sure to have nice intergenic region wihtout genes in it in order to train properly intergenic parameters. Script pending...
+* We may also filter the gene models by distance from neighboring genes in order to be sure to have nice intergenic region wihtout genes in it in order to train properly intergenic parameters. (default 500 bp) 
+
+```bash
+gff3_sp_filter_by_locus_distance.pl --gff filter/codingGeneFeatures.filter.longest_cds.complete.gff -o filter/codingGeneFeatures.filter.longest_cds.complete.good_distance.gff
+```
 
 * To avoid to bias the training and give an exhaustive view of the diversity of gene we have to remove the ones that are too similar to each other. In order to do so, we translate our coding genes into proteins, format the protein fasta file to be able to run a recursive blast and then filter them.
 
 ```bash
-gff3_sp_extract_sequences.pl -g filter/codingGeneFeatures.filter.longest_cds.complete.gff -f genome.fa -o protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa
+gff3_sp_extract_sequences.pl -g filtercodingGeneFeatures.filter.longest_cds.complete.good_distance.gff -f genome.fa -o protein/codingGeneFeatures.filter.longest_cds.complete.good_distance.proteins.fa
 
-/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/makeblastdb -in protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -dbtype prot  
+/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/makeblastdb -in protein/codingGeneFeatures.filter.longest_cds.complete.good_distance.proteins.fa -dbtype prot  
 
-/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/blastp -query protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -db protein/codingGeneFeatures.filter.longest_cds.complete.proteins.fa -outfmt 6 -out blast_recursive/codingGeneFeatures.filter.longest_cds.complete.proteins.fa.blast_recursive
+/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/blastp -query protein/codingGeneFeatures.filter.longest_cds.complete.good_distance.proteins.fa -db protein/codingGeneFeatures.filter.longest_cds.complete.good_distance.proteins.fa -outfmt 6 -out blast_recursive/codingGeneFeatures.filter.longest_cds.complete.good_distance.proteins.fa.blast_recursive
 
-gff3_sp_filter_by_mrnaBlastValue_bioperl.pl --gff filter/codingGeneFeatures.filter.longest_cds.complete.gff --blast blast_recursive/codingGeneFeatures.filter.longest_cds.complete.proteins.fa.blast_recursive --outfile nonredundant/codingGeneFeatures.nr.gff
+gff3_sp_filter_by_mrnaBlastValue_bioperl.pl --gff filter/codingGeneFeatures.filter.longest_cds.complete.good_distance.gff --blast blast_recursive/codingGeneFeatures.filter.longest_cds.complete.good_distance.proteins.fa.blast_recursive --outfile nonredundant/codingGeneFeatures.nr.gff
 ```
 
 * Sequences need to be converted to a simple genbank format.
