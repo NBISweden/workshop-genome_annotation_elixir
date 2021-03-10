@@ -80,11 +80,13 @@ EMBLmyGFF3 maker_final_short_intron_flagged_duplicated_location_fixed.gff genome
 If you use the Webin-CLI program (Command Line Submissions) from ENA, it contains embl-api-validator that will check the sanity of your EMBL file automatically as first step.  
 If you don't use the Webin-CLI program (Interactive Submissions, Programmatic Submissions) or you just want to check the sanity of your file you can use directly the embl-api-validator. You can find it at the [ena repository](https://github.com/enasequence/sequencetools).  
 
-Validate your file by embl-api-validator:  
+Download the validator and validate your file:
 
 ```bash
+wget http://central.maven.org/maven2/uk/ac/ebi/ena/sequence/embl-api-validator/1.1.265/embl-api-validator-1.1.265.jar
 java -jar embl-api-validator-1.1.265.jar -r my_annotation_ready_to_submit.embl
 ```
 
-If the file is validated, you now have a EMBL flat file ready to submit. In theory to finsish the submission, you will have to send the generated file to their ftp server and finish the submission process in the website side too.
+
+If the file is validated, you now have a EMBL flat file ready to submit. In theory to finsish the submission, you will have to send this archived file to their ftp server and finish the submission process in the website side too.
 But we will not go further. We are done. CONGRATULATION you know most of the secrets needed to understand the annotations on and perform your own!  
