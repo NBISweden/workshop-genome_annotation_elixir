@@ -112,14 +112,13 @@ Run augustus on the same genome file but using settings for yeast instead (chang
 
 <details>
 <summary>:key: Click to see the solution .</summary>
-<code>
-conda deactivate <br/>     
-  
-conda activate bioinfo <br/>   
 
-augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff <br/>  
+conda deactivate
 
-</code>
+conda activate bioinfo
+
+augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff
+
 </details>
 
 You can have look at the statistics to have a first impression of what are the differences compared to the previous annotation:
