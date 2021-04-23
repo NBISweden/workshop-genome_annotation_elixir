@@ -36,7 +36,7 @@ Maker also support SNAP (Works good, easy to train, not as good as others ab-ini
 
 You will need to symlink the evidence-based annotation (the gff annotation file from the first run of maker) and the genome fasta sequence.
 
-```bash
+```
 ln -s $maker_evidence_path/maker_evidence/maker_annotation.gff maker_evidence.gff
 ln -s $data/genome/genome.fa
 ```
@@ -46,7 +46,7 @@ ln -s $data/genome/genome.fa
 * First of all, as we will generate lot of files, we create structured folders to save them in a sorted way.
 (you can check that you are in the proper folder by doing pwd, you should be in augustus_training/)
 
-```bash
+```
 mkdir filter  
 mkdir protein  
 mkdir nonredundant  

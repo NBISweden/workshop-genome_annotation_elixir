@@ -37,7 +37,7 @@ augustus --species=help
 ```
 
 :question:Did you see the appropriate model for Drosophila Melanogaster?
-details>
+<details>
 <summary>:key: Click to see the solution .</summary>
 <code>
 fly                                      | Drosophila melanogaster
@@ -59,6 +59,7 @@ augustus --species=fly $data/genome/genome.fa --gff3=yes --progress=true --alter
 
 Take a look at the result file using ‘less augustus\_drosophila.gff’. What kinds of features have been annotated? Does it tell you anything about UTRs?
 
+<details>
 <summary>:key: Click to see the solution .</summary>
 <code>
 You have annotated genes, transcripts, exons, CDS, introns...
@@ -79,7 +80,7 @@ To better understand what contains your gff file you may use a script that will 
 agat_sp_statistics.pl --gff augustus_drosophila.gff3
 ```
 :question:How many genes have you annotated?
-
+<details>
 <summary>:key: Click to see the solution .</summary>
 <code>
 Compute transcript with isoforms if any
@@ -102,10 +103,10 @@ Load the file in [Webapollo (Here find the instruction)](webapollo_usage)
 <br/>The official Ensembl annotation is available in the genome browser.  
 :question: How does the Augustus annotation compare with the Ensembl annotation? Are they identical?
 
-<code>
+<details>
+<summary>:key: Click to see the solution .</summary>
 No they are not!
 You can notice that augustus has less genes than Ensembl and also that often genes from augustus are longer and contain several genes from Ensembl, this shows the importance of manual curation and having external evidence for annotation.
-</code>
 </details>
 
 :mortar_board: **Augustus with yeast models:**  
