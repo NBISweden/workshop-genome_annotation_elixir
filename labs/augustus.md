@@ -62,7 +62,7 @@ Take a look at the result file using ‘less augustus\_drosophila.gff’. What k
 <details>
 <summary>:key: Click to see the solution .</summary>
 You have annotated genes, transcripts, exons, CDS, introns...<br/>
-No UTR for drosophila melanogaster but can do it for other species see [http://bioinf.uni-greifswald.de/augustus/] (http://bioinf.uni-greifswald.de/augustus/)
+No UTR for drosophila melanogaster but can do it for other species see [augustus](http://bioinf.uni-greifswald.de/augustus/)
 </details>
 
 
@@ -114,7 +114,11 @@ Run augustus on the same genome file but using settings for yeast instead (chang
 <summary>:key: Click to see the solution .</summary>
 <code>
 conda deactivate <br/>  
-conda activate bioinfo <br/>  
+</code>
+<code>
+conda activate bioinfo <br/>
+</code>
+<code>
 augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff <br/>  
 </code>
 </details>
