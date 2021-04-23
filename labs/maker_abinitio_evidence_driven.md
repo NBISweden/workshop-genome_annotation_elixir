@@ -70,12 +70,11 @@ maker -CTL
 You can leave the two files controlling external software behaviors untouched but you need to provide the proper parameters in the file called **maker_opts.ctl**. Indeed it in that last we tell MAKER what are the files to use, and the options to apply.
 
 
-To edit the **maker_opts.ctl** file you can use the vi text editor:  
+To edit the **maker_opts.ctl** file you can use the nano text editor:  
 
 ```
-vi maker_opts.ctl
+nano maker_opts.ctl
 ```
-(press i to start editing and to exit vim and save press the esc button and write :wq)
 
 This time, we do specify a reference species to be used by **augustus**, which will enable ab-initio gene finding.
 
