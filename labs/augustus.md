@@ -16,8 +16,9 @@ objectives:
 Setup the folder structure:
 
 ```bash
-export data=/home/data/byod/Annotation/data/
+export data=/home/data/data_annotation/
 export abinitio_augustus_path=~/annotation/structural_annotation/abinitio_augustus
+cd
 mkdir -p $abinitio_augustus_path
 cd $abinitio_augustus_path
 ```
@@ -30,62 +31,112 @@ cd $abinitio_augustus_path
 
 Augustus comes with a list of species that already have a trained hmm model available. You can have a look at this list like that:  
 
-```bash
+```
+conda activate bioinfo
 augustus --species=help
 ```
 
 :question:Did you see the appropriate model for Drosophila Melanogaster?
+details>
+<summary>:key: Click to see the solution .</summary>
+<code>
+fly                                      | Drosophila melanogaster
+</code>
+</details>
+
 
 So, let's now launch Augustus on our genome with the `fly` model.
 
-```bash
+```
 augustus --species=fly $data/genome/genome.fa --gff3=yes --progress=true > augustus_drosophila.gff
 ```
 
 if you wish to annotate isoforms too, use the following command:
 
-```bash
+```
 augustus --species=fly $data/genome/genome.fa --gff3=yes --progress=true --alternatives-from-sampling=true > augustus_drosophila_isoform.gff
 ```
 
 Take a look at the result file using ‘less augustus\_drosophila.gff’. What kinds of features have been annotated? Does it tell you anything about UTRs?
 
+<summary>:key: Click to see the solution .</summary>
+<code>
+You have annotated genes, transcripts, exons, CDS, introns...
+No UTR for drosophila melanogaster but can do it for other species see [http://bioinf.uni-greifswald.de/augustus/](http://bioinf.uni-greifswald.de/augustus/)
+</code>
+</details>
+
+
 The gff-format of Augustus is non-standard (looks like gtf) so to view it in a genome browser you need to convert it. You can do this using the following command line:
 
-```bash
-gxf_to_gff3.pl -g augustus_drosophila.gff -o augustus_drosophila.gff3
+```
+conda deactivate
+conda activate agat
+agat_convert_sp_gxf2gxf.pl -g augustus_drosophila.gff -o augustus_drosophila.gff3
 ```
 To better understand what contains your gff file you may use a script that will provide you some statistics like this one:
-```bash
-gff3_sp_statistics.pl --gff augustus_drosophila.gff
+```
+agat_sp_statistics.pl --gff augustus_drosophila.gff3
 ```
 :question:How many genes have you annotated?
 
+<summary>:key: Click to see the solution .</summary>
+<code>
+Compute transcript with isoforms if any
+
+Number of genes                              60
+Number of transcripts                        60
+Number of mrnas with utr both sides          60
+Number of mrnas with at least one utr        60
+Number of cdss                               60
+
+</code>
+</details>
+
 
 Transfer the augustus\_drosophila.gff3 to your computer using scp from a local terminal:    
-```bash
-scp -P 65024 __YOURLOGIN__@terminal.mf.uni-lj.si:~/annotation/structural_annotation/abinitio_augustus/augustus_drosophila.gff3 .  
+```
+scp -P 65022 __YOURLOGIN__@hpc.mf.uni-lj.si:~/annotation/structural_annotation/abinitio_augustus/augustus_drosophila.gff3 .  
 ```
 Load the file in [Webapollo (Here find the instruction)](webapollo_usage)
 <br/>The official Ensembl annotation is available in the genome browser.  
 :question: How does the Augustus annotation compare with the Ensembl annotation? Are they identical?
+
+<code>
+No they are not!
+You can notice that augustus has less genes than Ensembl and also that often genes from augustus are longer and contain several genes from Ensembl, this shows the importance of manual curation and having external evidence for annotation.
+</code>
+</details>
 
 :mortar_board: **Augustus with yeast models:**  
 Run augustus on the same genome file but using settings for yeast instead (change species to Saccharomyces).
 
 <details>
 <summary>:key: Click to see the solution .</summary>
-<code> augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff
+<code>
+conda deactivate
+conda activate bioinfo
+augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff
 </code>
 </details>
 
 You can have look at the statistics to have a first impression of what are the differences compared to the previous annotation:
-```bash
-gff3_sp_statistics.pl --gff augustus_saccharomyces.gff
+```
+conda deactivate
+conda activate agat
+agat_sp_statistics.pl --gff augustus_saccharomyces.gff
 ```
 
 Load this result file into Webapollo and compare with your earlier results.  
+
 :question: Can you based on this draw any conclusions about how a typical yeast gene differs from a typical Drosophila gene?
+
+<details>
+<summary>:key: Click to see the solution .</summary>
+<code>
+You can that yeast genes are smaller, often one exon genes, if they have several exons the introns are smaller than for drosophila.
+</code>
+</details>
 
 # Closing remarks
 

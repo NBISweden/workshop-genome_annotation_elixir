@@ -15,9 +15,8 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-source ~/git/GAAS/profiles/activate_rackham_env
-export data=/proj/g2019006/nobackup/$USER/data
-export RNAseq_assembly_path=/proj/g2019006/nobackup/$USER/RNAseq_assembly
+export data=$USER/data
+export RNAseq_assembly_path=??/RNAseq_assembly
 ```
 
 # Assessing the quality using busco
@@ -36,7 +35,7 @@ mkdir assembly_assessment
 
 cd assembly_assessment
 
-module load BUSCO/3.0.2b
+
 source $BUSCO_SETUP
 
 run_BUSCO.py -i $data/RNAseq/trinity/Trinity.fasta -o busco_trinity -l $BUSCO_LINEAGE_SETS/arthropoda_odb9 -m tran -c 5
@@ -51,7 +50,7 @@ You need first to extract the transcript sequences from the gtf transcript file 
 
 ```
 ln -s $data/genome/genome.fa
-gff3_sp_extract_sequences.pl --cdna -g $RNAseq_assembly_path/guided_assembly/stringtie/transcripts.gtf -f genome.fa -o $RNAseq_assembly_path/guided_assembly/stringtie/transcripts_stringtie.fa
+agat_sp_extract_sequences.pl --cdna -g $RNAseq_assembly_path/guided_assembly/stringtie/transcripts.gtf -f genome.fa -o $RNAseq_assembly_path/guided_assembly/stringtie/transcripts_stringtie.fa
 ```
 Then you can run busco again :
 
@@ -77,7 +76,7 @@ For the de-novo assembly you can use the Trinity.fasta file obtained.
 For the genome-guided assembly you can either use the Stringtie results transcripts.gtf but you will often need to reformat it into a gff file.
 If you have not done it please do :
 ```
-gxf_to_gff3.pl -g $RNAseq_assembly_path/guided_assembly/stringtie/transcripts.gtf -o $RNAseq_assembly_path/guided_assembly/stringtie/transcript_stringtie.gff3
+agat_convert_sp_gxf2gxf.pl -g $RNAseq_assembly_path/guided_assembly/stringtie/transcripts.gtf -o $RNAseq_assembly_path/guided_assembly/stringtie/transcript_stringtie.gff3
 ```
 
 You are now ready to use the genome-guided assembly for your annotation.
