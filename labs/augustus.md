@@ -61,10 +61,8 @@ Take a look at the result file using ‘less augustus\_drosophila.gff’. What k
 
 <details>
 <summary>:key: Click to see the solution .</summary>
-<code>
-You have annotated genes, transcripts, exons, CDS, introns...
+You have annotated genes, transcripts, exons, CDS, introns...<br/>
 No UTR for drosophila melanogaster but can do it for other species see [http://bioinf.uni-greifswald.de/augustus/](http://bioinf.uni-greifswald.de/augustus/)
-</code>
 </details>
 
 
@@ -82,7 +80,7 @@ agat_sp_statistics.pl --gff augustus_drosophila.gff3
 :question:How many genes have you annotated?
 <details>
 <summary>:key: Click to see the solution .</summary>
-<code>
+
 Compute transcript with isoforms if any
 
 Number of genes                              60
@@ -105,7 +103,7 @@ Load the file in [Webapollo (Here find the instruction)](webapollo_usage)
 
 <details>
 <summary>:key: Click to see the solution .</summary>
-No they are not!
+No they are not!<br/>
 You can notice that augustus has less genes than Ensembl and also that often genes from augustus are longer and contain several genes from Ensembl, this shows the importance of manual curation and having external evidence for annotation.
 </details>
 
@@ -115,9 +113,9 @@ Run augustus on the same genome file but using settings for yeast instead (chang
 <details>
 <summary>:key: Click to see the solution .</summary>
 <code>
-conda deactivate
-conda activate bioinfo
-augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff
+conda deactivate <br/>
+conda activate bioinfo <br/>
+augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff <br/>
 </code>
 </details>
 
@@ -134,9 +132,7 @@ Load this result file into Webapollo and compare with your earlier results.
 
 <details>
 <summary>:key: Click to see the solution .</summary>
-<code>
-You can that yeast genes are smaller, often one exon genes, if they have several exons the introns are smaller than for drosophila.
-</code>
+You can see that yeast genes are smaller, often one exon genes, if they have several exons the introns are smaller than for drosophila.
 </details>
 
 # Closing remarks
