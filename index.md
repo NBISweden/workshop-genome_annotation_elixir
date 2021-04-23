@@ -9,9 +9,7 @@ title:  'Introduction to Genome Annotation - 1-5 July 2019'
 
 **Date and Location:**
 
-The workshop is held at University of Milano-Bicocca, Building U7, Lab 715,
-Via Bicocca degli Arcimboldi 8, 20126 Milan, Italy.
-
+The workshop was supposed to be held in Tromso, Norway. Due to corona situation is held online. 
 [ELIXIR-SI eLearning platform genome annotation course](https://elixir.mf.uni-lj.si/enrol/index.php?id=45)
 
 ## Course Purpose
@@ -21,8 +19,6 @@ The course is aimed at researchers that are involved in on-going or upcoming gen
 
 ## Prerequisites
 
-This is an advanced course. Participants must be comfortable navigating a Linux shell and executing 
-programs from the command line. Previous experience from working with NGS data is beneficial. Applicants 
-are encouraged to bring their own laptops, but there will be computers to use for participants unable to do so.
+This is an advanced course. Participants must be comfortable navigating a Linux shell and executing programs from the command line. Previous experience from working with NGS data is beneficial. 
 
 Test your Unix comfort with these exercises: [NGS Introduction - Introduction to Linux](https://scilifelab.github.io/courses/ngsintro/1809/labs/linux-intro)
