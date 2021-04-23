@@ -42,7 +42,7 @@ For this exercise, we have set up a specific [Webapollo](http://annotation-prod.
 The tracks available are:  
 
 - Augustus_drosophila : a pure ab initio annotation using Augustus with the drosophila model.
-- Maker\_evidence : A maker annotation using Evidence-based approach.
+- Maker\_evidence : A maker annotation using Evidence-based approach. This track is loaded as user track on top.
 - Maker\_abinitio : A maker annotation using Ab initio evidence-drived approach.  
 - Proteins : track of reviewed proteins aligned by Maker.
 - tophat_larva4 : RNAseq data (bam file) aligned to the genome by tophat.  
@@ -54,24 +54,18 @@ A genomic region of the chrosmosome is assigned to each of you. Your aim is to m
 
 NOTES: Isoforms are allowed. Start each gene annotation by dragging-and-dropping the gene model that you think be the best.
 
-1 :    	            50 000 - 140 500
-<br/>2	:        140 500	- 227 500
-<br/>3	:              227 500	- 314 500
-<br/>4	:            314 500 - 401 500
-<br/>5	:              401 500	- 488 500
-<br/>6 :             488 500	- 575 500
-<br/>7 :                575 500	- 662 500
-<br/>8	:            662 500	- 749 500
-<br/>9	:              749 500	- 836 500
-<br/>10	:                836 500	- 923 500
-<br/>11	:              923 500	- 1 010 500
-<br/>12	:              1 010 500	- 1 097 500
-<br/>13 :                1 097 500 - 1 184 500
-<br/>14 :                  1 184 500 - 1 268 000
+1 :    	            1 - 168 982
+<br/>2	:        168 983 - 337 965
+<br/>3	:              337 966 - 506 948
+<br/>4	:            506 949 - 675 931
+<br/>5	:              675 932 - 844 914
+<br/>6 :             844 915 - 1 013 897
+<br/>7 :                1 013 898 - 1 182 880
+<br/>8	:            1 182 881 - 1 351 857
 
 The work you performed was only on small genome portion (1,3 Mbp). That gives you a flavour of the time cost to do a manual curation on a small genome, and an idea of the amount of work needed to manually curate a big genome (>1 Gbp).
 
 ## Check
 
 Before the end of this practical session we will load the reference annotation of drosophila melanogaster allowing you to check your manual annotation. You should just refresh your web page to display this new track.  
-Do not be disappointed if your annotation differs a lot from the reference one. Keep in mind that the reference annotation has been curated by experienced experts, and that have used more complete evidence.
+Do not be disappointed if your annotation differs a lot from the reference one. Keep in mind that the reference annotation has been curated by experienced experts, and by using more complete evidence.
