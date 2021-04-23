@@ -14,10 +14,11 @@ For this exercise you need to be logged in to Uppmax.
 
 Setup the folder structure:
 
-```bash
-source ~/git/GAAS/profiles/activate_rackham_env
-export data=/proj/g2019006/nobackup/$USER/data
-export RNAseq_assembly_path=/proj/g2019006/nobackup/$USER/RNAseq_assembly
+```
+???
+export data=$USER/data
+export RNAseq_assembly_path=??/RNAseq_assembly
+
 ```
 
 ## Trimmomatic/Hisat2/Stringtie
@@ -27,10 +28,9 @@ export RNAseq_assembly_path=/proj/g2019006/nobackup/$USER/RNAseq_assembly
 [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) performs a variety of useful trimming tasks for illumina paired-end and single ended data.The selection of trimming steps and their associated parameters are supplied on the command line.
 
 ```
-cd $RNAseq_assembly_path
+mkdir $RNAseq_assembly_path
 mkdir -p guided_assembly/trimmomatic
 cd guided_assembly
-module load trimmomatic/0.36
 ```
 
 The following command line will perform the following:
@@ -55,8 +55,6 @@ First you need to build an index of your genome
 ```
 mkdir index
 
-module load HISAT2/2.1.0
-module load samtools/1.8
 hisat2-build $data/genome/genome.fa index/genome_index
 ```
 
@@ -89,7 +87,6 @@ You can add as input an annotation from gtf/gff3 file to calculate TPM and FPKM 
 
 
 ```
-module load StringTie/1.3.3
 
 stringtie hisat2/accepted_hits.sorted.bam -o stringtie/transcripts.gtf
 ```
@@ -101,7 +98,7 @@ When done you can find your results in the directory ‘stringtie’. The file t
 Transfer the gtf files to your computer using scp:
 
 ```
-scp __YOURLOGIN__@rackham.uppmax.uu.se:/proj/g2019006/nobackup/__YOURLOGIN__/RNAseq_assembly/guided_assembly/stringtie/transcripts.gtf .
+scp ?????:/proj/g2019006/nobackup/__YOURLOGIN__/RNAseq_assembly/guided_assembly/stringtie/transcripts.gtf .
 ```
 
 :question: Looking at your results, are you happy with the default values of Stringtie (which we used in this exercise) or is there something you would like to change?
@@ -136,9 +133,11 @@ To do so, first you need to convert your gtf into a proper gff3 (You have done i
 
 :bulb: **Tips**: Do
 ```
-gxf_to_gff3.pl --help
-gff3_sp_manage_introns.pl --help
+agat_convert_sp_gxf2gxf.pl --help
+agat_sp_manage_introns.pl --help
 ```
+
+***I need to check this***
 
 <details>
 <summary>:key: Click to see the solution .</summary>
@@ -146,7 +145,7 @@ gff3_sp_manage_introns.pl --help
 <code>
 
 gxf_to_gff3.pl -g stringtie/transcripts.gtf -o stringtie/transcript_stringtie.gff3
-<br>gff3_sp_manage_introns.pl --gff stringtie/transcript_stringtie.gff3 -o introns_information
+<br>agat_sp_manage_introns.pl --gff stringtie/transcript_stringtie.gff3 -o introns_information
 
 </code>
 </details>

@@ -16,15 +16,16 @@ objectives:
 Setup the folder structure:
 
 ```bash
-export data=/home/data/byod/Annotation/data/
+export data=/home/data/data_annotation/
 export maker_evidence_path=~/annotation/structural_annotation/maker_evidence
+cd
 mkdir -p $maker_evidence_path
 cd $maker_evidence_path
 ```
 
 ## Overview
 
-The first run of Maker will be done without ab-initio predictions. What are your expectations for the resulting gene build? In essence, we are attempting a purely evidence-based annotation, where the best protein- and EST-alignments are chosen to build the most likely gene models. The purpose of an evidence-based annotation is simple. Basically, you may try to annotate an organism where no usable ab-initio model is available. The evidence-based annotation can then be used to create a set of genes on which a new model could be trained on (using e.g. Snap or Augustus). Selection of genes for training can be based on the annotation edit distance (AED score), which says something about how great the distance between a gene model and the evidence alignments is. A score of 0.0 would essentially say that the final model is in perfect agreement with the evidence.
+The first run of Maker will be done without *ab-initio* predictions. What are your expectations for the resulting gene build? In essence, we are attempting a purely evidence-based annotation, where the best protein- and EST-alignments are chosen to build the most likely gene models. The purpose of an evidence-based annotation is simple. Basically, you may try to annotate an organism where no usable *ab-initio* model is available. The evidence-based annotation can then be used to create a set of genes on which a new model could be trained on (using e.g. Snap or Augustus). Selection of genes for training can be based on the annotation edit distance (AED score), which says something about how great the distance between a gene model and the evidence alignments is. A score of 0.0 would essentially say that the final model is in perfect agreement with the evidence.
 
 Let's do this step-by-step:
 
@@ -53,10 +54,11 @@ To finish you could use a transcriptome assembly. We will use a guided-assembly 
 ln -s $data/RNAseq/stringtie/transcript_stringtie.gff3 stringtie2genome.gff
 ```
 
-/!\\ Always check that the gff files you provides as protein or EST contains match/match_part (gff alignment type ) feature types rather than genes/transcripts (gff annotation type) otherwise MAKER will not use the contained data properly. Here we have to fix the stringtie gff file.
+/!\\ Always check that the gff files you provides as protein or EST contains match/match_part (gff alignment type ) feature types rather than genes/transcripts (gff annotation type) otherwise MAKER will not use the contained data properly. Here we have to fix the stringtie gff file. **can use the gtf righ away**
 
 ```
-gff3_sp_alignment_output_style.pl --gff stringtie2genome.gff -o stringtie2genome.ok.gff
+conda activate agat
+agat_sp_alignment_output_style.pl --gff stringtie2genome.gff -o stringtie2genome.ok.gff
 ```
 
 You should now have 2 repeat files, 1 EST file, 1 protein file, 1 transcript file, and the genome sequence in the working directory.
@@ -65,7 +67,9 @@ You should now have 2 repeat files, 1 EST file, 1 protein file, 1 transcript fil
 
 * Let's start by creating the three MAKER config files:
 
-```bash
+```
+conda deactivate
+conda activate maker
 maker -CTL
 ```
 
@@ -74,14 +78,14 @@ You can leave the two files controlling external software behaviors untouched bu
 
 To edit the **maker_opts.ctl** file you can use the nano text editor:  
 
-```bash
+```
 nano maker_opts.ctl
 ```
 
 In the **maker_opts.ctl** you will set:
 
 - name of the genome sequence (genome=)  
-- name of the 'EST' file in fasta format  (est=) :bulb:You can write the result of your denovo assembly Trinity.fasta there  
+- name of the 'EST' file in fasta format  (est=)
 - name of the 'Transcript' file in gff format (est_gff=)  
 - name of the 'Protein' set file(s) (protein=)  
 - name of the repeatmasker and repeatrunner files (rm_gff=)  
@@ -153,14 +157,16 @@ To better understand the different parameters you can have a look [here](http://
 
 If your maker\_opts.ctl is configured correctly, you should be able to run maker:
 ```
-mpirun -n 4 maker --ignore_nfs_tmp
+mpirun -n 8 maker --ignore_nfs_tmp
 ```
 This will start Maker on 8 cores, if everything is configured correctly.
-This will take a little while and process a lot of output to the screen. Luckily, much of the heavy work - such as repeat masking - are already done, so the total running time is quite manageable, even on a small number of cores.
+This will take a little while and process a lot of output to the screen. Luckily, much of the heavy work - such as repeat masking - are already done, so the total running time is quite manageable, even on a small number of cores. (it should take around 5-10 minutes to run)
 
 Once the run is finished, check that everything went properly. If problems are detected, launch MAKER again.
 ```
-maker_check_progress.sh
+conda deactivate
+conda activate gaas
+gaas_maker_check_progress.sh
 ```
 
 ## Inspect the output (optional)
@@ -171,20 +177,24 @@ maker_check_progress.sh
 
 Once Maker is finished, compile the annotation:
 ```
-maker_merge_outputs_from_datastore.pl --output maker_evidence
+gaas_maker_merge_outputs_from_datastore.pl --output maker_evidence
 ```
 We have specified a name for the output directory since we will be creating more than one annotation and need to be able to tell them apart.  
 
-This should create a **maker\_evidence** folder containing all computed data including **maker.gff** which is the maker annotation file and **genome.all.maker.proteins.fasta** which is the protein fasta file of this annotation. Those two files are the most important outputs from this analysis.
+This should create a **maker\_evidence** folder containing all computed data including **maker_annotation.gff** which is the maker annotation file and **maker_annotation.proteins.fasta** which is the protein fasta file of this annotation. Those two files are the most important outputs from this analysis.
 
-=> You could sym-link the **maker.gff** and **genome.all.maker.proteins.fasta** files to another folder called e.g. dmel\_results, so everything is in the same place in the end. Just make sure to call the links with specific names, since any maker output will be called similarly.
+=> You could sym-link the **maker_annotation.gff** and **maker_annotation.proteins.fasta** files to another folder called e.g. dmel\_results, so everything is in the same place in the end. Just make sure to call the links with specific names, since any maker output will be called similarly.
 
 
 ## Inspect the gene models
 
 To get some statistics of your annotation you could read the **maker_annotation_stat.txt** file from the **maker\_evidence** folder or launch this script that work on any gff file :
 ```
-gff3_sp_statistics.pl --gff maker_evidence_genome/maker_annotation.gff
+conda deactivate
+conda activate agat
+agat_sp_statistics.pl --gff maker_evidence/maker_annotation.gff
 ```
 
-We could now also visualise the annotation in the Webapollo genome browser.
+:question: How many genes do you get? what kind of statistics do you see?
+
+We could now also visualise the annotation in the Webapollo genome browser (like we did for the augustus exercises).

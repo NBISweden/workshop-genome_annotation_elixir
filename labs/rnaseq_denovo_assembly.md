@@ -14,10 +14,12 @@ For this exercise you need to be logged in to Uppmax.
 
 Setup the folder structure:
 
-```bash
-source ~/git/GAAS/profiles/activate_rackham_env
-export data=/proj/g2019006/nobackup/$USER/data
-export RNAseq_assembly_path=/proj/g2019006/nobackup/$USER/RNAseq_assembly
+**???**
+
+```
+
+export data=$USER/data
+export RNAseq_assembly_path=??/RNAseq_assembly
 ```
 
 ## Trinity
@@ -30,9 +32,6 @@ cd $RNAseq_assembly_path
 mkdir trinity
 
 cd trinity
-
-module load trinity/2.4.0
-module load samtools/1.9
 
 Trinity --seqType fq --max_memory 32G --left $data/raw_computes/ERR305399_1.fastq.gz --right $data/raw_computes/ERR305399_2.fastq.gz --CPU 5 --output trinity --SS_lib_type RF
 ```
