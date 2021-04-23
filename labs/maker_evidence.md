@@ -78,7 +78,7 @@ You can leave the two files controlling external software behaviors untouched bu
 
 To edit the **maker_opts.ctl** file you can use the vim text editor:  
 
-```bash
+```
 vi maker_opts.ctl
 ```
 (press i to start editing and to exit vim and save press the esc button and write :wq)
@@ -182,9 +182,9 @@ gaas_maker_merge_outputs_from_datastore.pl --output maker_evidence
 ```
 We have specified a name for the output directory since we will be creating more than one annotation and need to be able to tell them apart.  
 
-This should create a **maker\_evidence** folder containing all computed data including **maker_annotation.gff** which is the maker annotation file and **genome.all.maker.proteins.fasta** which is the protein fasta file of this annotation. Those two files are the most important outputs from this analysis.
+This should create a **maker\_evidence** folder containing all computed data including **maker_annotation.gff** which is the maker annotation file and **maker_annotation.proteins.fasta** which is the protein fasta file of this annotation. Those two files are the most important outputs from this analysis.
 
-=> You could sym-link the **maker_annotation.gff** and **genome.all.maker.proteins.fasta** files to another folder called e.g. dmel\_results, so everything is in the same place in the end. Just make sure to call the links with specific names, since any maker output will be called similarly.
+=> You could sym-link the **maker_annotation.gff** and **maker_annotation.proteins.fasta** files to another folder called e.g. dmel\_results, so everything is in the same place in the end. Just make sure to call the links with specific names, since any maker output will be called similarly.
 
 
 ## Inspect the gene models
@@ -196,4 +196,6 @@ conda activate agat
 agat_sp_statistics.pl --gff maker_evidence/maker_annotation.gff
 ```
 
-We could now also visualise the annotation in the Webapollo genome browser.
+:question: How many genes do you get? what kind of statistics do you see?
+
+We could now also visualise the annotation in the Webapollo genome browser (like we did for the augustus exercises).

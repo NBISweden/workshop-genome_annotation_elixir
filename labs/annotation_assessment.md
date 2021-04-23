@@ -77,7 +77,13 @@ Different methods can predict genes that are not in common (non-overlaping). To 
 ```
 agat_sp_complement_annotations.pl --ref maker_abinitio.gff --add maker_evidence.gff -o maker_abinitio_cplt_by_evidence.gff
 ```
-:question:How many genes have been added in this new maker_abinitio_cplt_by_evidence.gff annotation ?
+:question:How many genes have been added in this new maker_abinitio_cplt_by_evidence.gff annotation?
+
+<details>
+<summary>:key: Click to see the solution .</summary>
+In that case only 1 gene and 1 RNA (it actually depends on your *ab-initio* training), in real life it would be more.
+In our project we often complement evidence based annotation with *ab-initio* annotation.
+</details>
 
 ### BUSCO
 
@@ -119,6 +125,12 @@ busco -i maker_abinitio_cplt_by_evidence.fa -o busco_annotation -m prot -c 8 -l 
 The results is in run_busco_annotation/short_summary_busco_genome.txt.  
 
 :question:if you compare the busco results what do you see?
+
+<details>
+<summary>:key: Click to see the solution .</summary>
+First of all, keep in mind that we are using only 1 chromosome of a full assembly so the results are not good.
+however, they are consistent with each other with around 0.5% of complete busco for both and we even to do slightly better with the annotation (still depend on you training of *ab-initio*).
+</details>
 
 ### Comparison with the reference annotation
 
@@ -284,7 +296,7 @@ ln -s ../complement/maker_abinitio_cplt_by_evidence.gff
 
 conda deactivate
 conda activate agat
-agat_sp_filter_feature_by_attribute_value.pl --gff mrna.gff --value 0.3 -a _AED -t ">" -o codingGeneFeatures.filter.gff
+agat_sp_filter_feature_by_attribute_value.pl --gff maker_abinitio_cplt_by_evidence.gff --value 0.3 -a _AED -t ">" -o codingGeneFeatures.filter.gff
 
 ```
 
@@ -302,7 +314,7 @@ There exist a number of 'annotation viewers' - IGV, Argo and Apollo, to name a f
 
 ### Using WebApollo to view annotations
 Transfer your maker annotation files to your computer using the scp command.  
-Then, jump to [WebApollo](webapollo_usage) and upload your annotation track into the **drosophila\_melanogaster\_chr4** genome portal.
+Then, jump to [WebApollo](webapollo_usage) and upload your annotation track into the **dromel\_chr4** genome portal.
 You can now compare your gene builds against this reference. Some questions to ask yourself:
 
 :question:Do my gene builds recover all the genes found in the reference?  

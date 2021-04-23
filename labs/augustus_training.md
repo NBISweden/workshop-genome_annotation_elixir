@@ -25,10 +25,10 @@ cd $augustus_training_path
 
 # Introduction
 
-From the maker run evidence based, we can train our ab-initio predictors and then use them for the second run of annotation.
+From the maker run evidence based, we can train our *ab-initio* predictors and then use them for the second run of annotation.
 You will need a set of genomic sequences with gene structures (sequence coordinates of starts and ends of exons and genes) and the most important part is to select the right set of genes.
-In many cases, or as a first step towards modeling complete genes, it is sufficient to have only the coding parts of the gene structure (CDS).
-We will only train augustus today as it is one the best ab-initio predictor and one of the hardest to train.
+In many cases, or as a first step towards modelling complete genes, it is sufficient to have only the coding parts of the gene structure (CDS).
+We will only train augustus today as it is one the best *ab-initio* predictor and one of the hardest to train.
 Maker also support SNAP (Works good, easy to train, not as good as others ab-initio especially on longer intron genomes), GeneMark (Self training, no hints, buggy, not good for fragmented genomes or long introns), FGENESH (Works great, costs money even for training) and now EVM.
 
 
@@ -43,7 +43,7 @@ ln -s $data/genome/genome.fa
 
 ## Compile a set of training and test genes
 
-* First of all, as we will generate lot of files we create structured folders to save them in a sorted way.
+* First of all, as we will generate lot of files, we create structured folders to save them in a sorted way.
 (you can check that you are in the proper folder by doing pwd, you should be in augustus_training/)
 
 ```bash
@@ -54,9 +54,9 @@ mkdir blast_recursive
 mkdir gff2genbank  
 ```
 
-* Then, we select only the protein coding genes from the maker.gff file and remove all other type of level2 features: tRNA, snoRNA, etc. ( :bulb: **Tips**: in this case we only have mRNA)
+* Then, we select only the protein coding genes from the maker_annotation.gff file and remove all other type of level2 features: tRNA, snoRNA, etc. ( :bulb: **Tips**: in this case we only have mRNA)
 
-```bash
+```
 conda deactivate
 conda activate agat
 agat_sp_separate_by_record_type.pl -g maker_evidence.gff -o maker_results_noAbinitio_clean
@@ -81,13 +81,13 @@ agat_sp_keep_longest_isoform.pl -f filter/codingGeneFeatures.filter.gff -o filte
 agat_sp_filter_incomplete_gene_coding_models.pl --gff filter/codingGeneFeatures.filter.longest_cds.gff -f genome.fa -o filter/codingGeneFeatures.filter.longest_cds.complete.gff
 ```
 
-* We may also filter the gene models by distance from neighboring genes in order to be sure to have nice intergenic region wihtout genes in it in order to train properly intergenic parameters. (default 500 bp)
+* We may also filter the gene models by distance from neighbouring genes in order to be sure to have nice intergenic region without genes in it (default 500 bp).
 
 ```
 agat_sp_filter_by_locus_distance.pl --gff filter/codingGeneFeatures.filter.longest_cds.complete.gff -o filter/codingGeneFeatures.filter.longest_cds.complete.good_distance.gff
 ```
 
-* To avoid to bias the training and give an exhaustive view of the diversity of gene we have to remove the ones that are too similar to each other. In order to do so, we translate our coding genes into proteins, format the protein fasta file to be able to run a recursive blast and then filter them.
+* To avoid to bias the training and give an exhaustive view of the diversity of gene we have to remove the ones that are too similar to each other. In order to do so, we translate our coding genes into proteins, extract the protein fasta file to be able to run a recursive blast and then filter them.
 
 ```
 agat_sp_extract_sequences.pl -o protein/codingGeneFeatures.filter.longest_cds.complete.good_distance_proteins.fa -f genome.fa -p -cfs -cis -ct 1 --g filter/codingGeneFeatures.filter.longest_cds.complete.good_distance.gff
@@ -112,14 +112,14 @@ agat_sp_filter_by_mrnaBlastValue.pl --gff filter/codingGeneFeatures.filter.longe
 
 ```
 conda deactivate
-conda activate bioingo
+conda activate bioinfo
 /opt/anaconda3/envs/bioinfo/scripts/gff2gbSmallDNA.pl nonredundant/codingGeneFeatures.nr.gff $data/genome/genome.fa 500 gff2genbank/codingGeneFeatures.nr.gbk
 ```
 
 * You should split the set of gene structures randomly.
 In theory in order for the test accuracy to be statistically meaningful the test set should also be large enough (100-200 genes).
 
-```bash
+```
 /opt/anaconda3/envs/bioinfo/scripts/randomSplit.pl gff2genbank/codingGeneFeatures.nr.gbk 100
 ```
 
@@ -129,6 +129,10 @@ In theory in order for the test accuracy to be statistically meaningful the test
 <summary>:key: Click to see the solution .</summary>
 There are not 100 genes in the file, because we are using only the chr4 of drosophila.
 The training will probably not be good!
+You can lower the number of genes uses like : 20
+<code>
+/opt/anaconda3/envs/bioinfo/scripts/randomSplit.pl gff2genbank/codingGeneFeatures.nr.gbk 20
+</code>
 </details>
 
 ## Train Augustus
@@ -142,9 +146,9 @@ cp -r /opt/anaconda3/envs/bioinfo/config/ .
 export AUGUSTUS_CONFIG_PATH=~/annotation/structural_annotation/augustus_training/config
 ```
 
-:bangbang: **Replace <$USER> by your username.** 
+:bangbang: **Replace <$USER> by your username.**
 
-```bash
+```
 /opt/anaconda3/envs/bioinfo/scripts/new_species.pl --species=dmel_$USER
 
 etraining --species=dmel_$USER gff2genbank/codingGeneFeatures.nr.gbk.train
