@@ -15,7 +15,8 @@ Setup the folder structure:
 
 ```bash
 cd ~/annotation/
-export data=/home/data/byod/Annotation/data/
+conda activate bioinfo
+export data=/home/data/data_annotation/
 export bacterial_annotation_path=~/annotation/bacterial_annotation
 mkdir -p $bacterial_annotation_path
 export LC_ALL=C
@@ -92,11 +93,11 @@ The goal of the exercise is for you to learn how to use prokka and to annotate t
 Run prokka without any options and then with options of your choices (we encourage you to try at least the options --proteins and --rfam)    
 
 <details>
-<summary>:key: Click to see example on how to run prokka (you do not need to run all of them you can run prokka only with the output options and the two options --proteins and --rfam) .</summary>  
+<summary> :key: Click to see example on how to run prokka (you do not need to run all of them you can run prokka only with the output options and the two options --proteins and --rfam) .</summary>  
 
 <br>Running prokka with only the output option looks like this :  
 
-<br><code> prokka Chlamydia_trachomatis_genome.fa --outdir prokka_Chlamydia
+  <br><code> prokka Chlamydia_trachomatis_genome.fa --outdir prokka_Chlamydia
 </code>  
 
 <br>Running prokka with only --rfam looks like this :  
