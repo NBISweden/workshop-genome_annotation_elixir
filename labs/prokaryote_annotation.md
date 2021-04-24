@@ -93,11 +93,12 @@ The goal of the exercise is for you to learn how to use prokka and to annotate t
 Run prokka without any options and then with options of your choices (we encourage you to try at least the options --proteins and --rfam)    
 
 <details>
-<summary> :key: Click to see example on how to run prokka (you do not need to run all of them you can run prokka only with the output options and the two options --proteins and --rfam) .</summary>  
+<summary> :key: Click to see example on how to run prokka (you do not need to run all of them you can run prokka only with the output options and the two options --proteins and --rfam)</summary>  
 
 <br>Running prokka with only the output option looks like this :  
 
-  <br><code> prokka Chlamydia_trachomatis_genome.fa --outdir prokka_Chlamydia
+  <br><code> conda activate prokka
+  prokka Chlamydia_trachomatis_genome.fa --outdir prokka_Chlamydia
 </code>  
 
 <br>Running prokka with only --rfam looks like this :  
@@ -133,7 +134,8 @@ Congratulations you have annotated bacterial genomes!
 BUSCO can also be used after the annotation to check if you found the genes you were expected or if something happened during the annotation and you lost genes. To do so you change the option "-m geno" by "-m prot" (you need to replace XXX by the proper name of the file).
 
 ```
-busco -i prokka_Chlamydia/PROKKA_XXXX.faa -o chlamydia_busco_prot -m prot -c 8 -l /home/data/opt-byod/busco/lineages/bacteria_odb9
+conda activate busco
+busco -i prokka_Chlamydia/PROKKA_XXXX.faa -o chlamydia_busco_prot -m prot -c 8 -l bacteria_odb10
 ```
 You can do it for the two other genomes.
 
