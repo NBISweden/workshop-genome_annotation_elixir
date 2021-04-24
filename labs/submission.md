@@ -65,13 +65,11 @@ nano translation_gff_feature_to_embl_feature.json
 ```
 <details>
 <summary>:key: Click here to see the expected maker_opts.ctl.</summary>
-{% highlight bash %}   
   ...  
  "exon": {   
    "remove": true   
  },  
   ...   
-{% endhighlight %}  
 </details>   
 
 
