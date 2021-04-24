@@ -65,14 +65,14 @@ nano translation_gff_feature_to_embl_feature.json
 ```
 <details>
 <summary>:key: Click here to see the expected maker_opts.ctl.</summary>
-{% highlight bash %}  
+{% highlight bash %}   
   ...  
- "exon": {  
-   "remove": true  
+ "exon": {   
+   "remove": true   
  },  
   ...   
 {% endhighlight %}  
-</details>  
+</details>   
 
 
 You can now run the conversion:
