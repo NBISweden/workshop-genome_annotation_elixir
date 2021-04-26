@@ -21,7 +21,7 @@ title:  'Exercices'
 **45'** [Lecture: Functional annotation]()   
 **1.15'** [Practical: Functional annotation](labs/functional_annotation)  
 **30'** [Practical: Submission to DB](labs/submission)  
-**20'** [Lecture: Prokaryote annotation]()
+**20'** [Lecture: Prokaryote annotation]()  
 **50'** [Practical: Prokaryote annotation and visualization](labs/prokaryote_annotation)  
 
 
