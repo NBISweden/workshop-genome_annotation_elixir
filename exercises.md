@@ -6,7 +6,7 @@ title:  'Exercices'
 # Introduction to genome annotation
 
 **Teachers:**  
-[Jacques Dainat, Ph.D.](http://nbis.se/about/staff/jacques-dainat/)  
+[Nima Rafati, Ph.D.](http://nbis.se/about/staff/nima-rafati/)  
 [Lucile Soler, Ph. D.](http://nbis.se/about/staff/lucile-soler/) 
 
 
