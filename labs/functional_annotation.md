@@ -134,7 +134,7 @@ Blast searches provide an indication about potential homology to known proteins.
 To run Blast on your data, use the Ncbi Blast+ package against a Drosophila-specific database (included in the folder we have provided for you, under **~/annotation/blastdb/uniprot\_dmel/uniprot\_dmel.fa**) - of course, any other NCBI database would also work:
 ```
 conda activate blast
-blastp -db ~/annotation/blastdb/uniprot_dmel/uniprot_dmel.fa -query maker_final_prot.fa -outfmt 6 -out blast.out -num_threads 4
+blastp -db $functional_annotation_path/uniprot_dmel/uniprot_dmel.fa -query maker_final_prot.fa -outfmt 6 -out blast.out -num_threads 4
 ```
 if you received the following error:  
 _BLAST Database error: No alias or index file found for protein database [/blastdb/uniprot_dmel/uniprot_dmel.fa] in search path [/home/nima_rafati/functional_annotation::]_
