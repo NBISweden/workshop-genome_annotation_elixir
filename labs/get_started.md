@@ -1,7 +1,7 @@
 ---
 layout: default-overview
 title: Get started
-exercises: 20
+exercises: 10 min
 questions:
   - How do I connect to server?
   - How do I get the data and tools necessary for the course?
