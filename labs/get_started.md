@@ -3,10 +3,10 @@ layout: default-overview
 title: Get started
 exercises: 10 min
 questions:
-  - How do I connect to server?
+  - How do I connect to server/VM?
   - How do I get the data and tools necessary for the course?
 objectives:
-  - Connect to server
+  - Connect to server/VM
   - Get all the data necessary and the tools running for the course
 ---
 
@@ -16,8 +16,8 @@ We will for all exercises use data for the fruit fly, *Drosophila melanogaster*,
 
 ## Prerequisites
 
-### Connection to the server 
-Please connect yourself to the server.
+### Connection to the server/VM 
+Please connect yourself to the server/VM.
 
 ### Loading necessary tools  
 All the tools are installed and you can load them by activating conda environment.
