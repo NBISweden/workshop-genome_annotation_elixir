@@ -17,15 +17,14 @@ For this exercise you need to be logged in to Uppmax.
 Setup the folder structure:
 
 ```bash
-source ~/git/GAAS/profiles/activate_rackham_env
-export data=/proj/g2019006/nobackup/$USER/data
-export work_with_gff=/proj/g2019006/nobackup/$USER/work_with_gff
+export data=/home/$USER/data
+export work_with_gff=/home/$USER/work_with_gff
 mkdir -p $work_with_gff
 ```
 
 # Recognize the format
 
-GFF and GTF format are close and could be difficult to differentiate. To a complete overview of the format you can have a look in the <strong>cheat sheet</strong> section.
+GFF and GTF format are close and could be difficult to differentiate. To have a complete overview of these formats you can have a look in the <strong>cheat sheet</strong> section.
 
 ```bash
 cd $work_with_gff
@@ -72,14 +71,15 @@ Now your file has at least a correct structure!
 Let's convert it to **GFF3** format:  
 
   ```bash
-  gxf_to_gff3.pl --gff augustus.xxx -o augustus.gff3 
+  conda activate agat
+  agat_convert_sp_gxf2gxf.pl --gff augustus.xxx -o augustus.gff3 
   ```
 
-The script **gxf_to_gff3.pl** can be your friend when dealing with GFF/GTF format files. It can deal with any kind of GFF/GTF format (even mixed formats) and errors. It allows to create a standardized **GFF3** format file.
+The script **agat_convert_sp_gxf2gxf.pl** can be your friend when dealing with GFF/GTF file formats. It can deal with any kind of GFF/GTF format (even mixed formats) and errors. It allows to create a standardized **GFF3** format file.
 
 # Extract information from a GFF file
 
-The GFF fomat has been developed to be easy to parse and process by a variety of programs in different languages (e.g Unix tools as grep and sort, perl, awk, etc). For these reasons, they decided that each feature is described on a single line.
+The GFF fomat has been developed to easily parse and process by a variety of programs in different languages (e.g Unix tools as grep and sort, perl, awk, etc). For these reasons, the developers decided that each feature is described on a single line.
 
 Download **human** gff annotation v96 from Ensembl:
 
