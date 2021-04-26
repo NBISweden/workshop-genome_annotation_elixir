@@ -18,7 +18,8 @@ Setup the folder structure:
 
 ```bash
 cd ~/annotation/
-export data=/home/data/byod/Annotation/data
+conda activate bioinfo
+export data=/home/data/data_annotation/
 export functional_annotation_path=~/annotation/functional_annotation
 export structural_annotation_path=~/annotation/structural_annotation
 mkdir -p $functional_annotation_path
@@ -26,7 +27,7 @@ mkdir -p $functional_annotation_path
 You need to have the right to write in the folder blastdb/ for the next exercises so you will copy the folder:
 ```bash
 cp -r /home/data/byod/Annotation/data/blastdb .
-chmod +w blastdb/uniprot_dmel/
+chmod +w $data/blastdb/uniprot_dmel/
 ```
 
 ## Introduction
@@ -59,7 +60,8 @@ ln -s $data/genome/genome.fa
 In order to do the functional annotation, you need to retrieve the proteins from the structural annotation.
 
 ```bash
-gff3_sp_extract_sequences.pl -g maker_final.gff -f genome.fa -p -o maker_final_prot.fa
+conda activate agat
+agat_sp_extract_sequences.pl -g maker_final.gff -f genome.fa -p -o maker_final_prot.fa
 ```
  <br />
 
@@ -86,10 +88,10 @@ This analyse will fail.
 If you did not have a look at the maker_final.faa, please have look and find a solution to
 make interproscan run.  
 
-:bulb:***TIP*** : ```gff3_sp_extract_sequences.pl --help```  
+:bulb:***TIP*** : ```agat_sp_extract_sequences.pl --help```  
 
 <details>
-<summary> :key:**Interproscan problem** - Click to expand the solution </summary>
+<summary> :key: **Interproscan problem** - Click to expand the solution </summary>
 
 Interproscan is really selective on the fasta input data, there should not be any stop codon * or any character other than ATCG (except in the header of course)  
 
@@ -118,28 +120,39 @@ Next, you could write scripts of your own to merge interproscan output into your
 We also created a script that can do the merging between the structural annotation and the interpro results :
 
 ```
-gff3_sp_manage_functional_annotation.pl --gff maker_final.gff -i maker_final_prot.fa.tsv -o  maker_final.interpro
+conda activate agat
+agat_sp_manage_functional_annotation.pl --gff maker_final.gff -i maker_final_prot.fa.tsv -o  maker_final.interpro
 ```
 Where a match is found, the new file will now include features called Dbxref and/or Ontology_term in the gene and transcript feature field (9th column).
 The improved annotation is the gff file inside the maker_final.interpro folder.
 
 ## BLAST approach
-Blast searches provide an indication about potential homology to known proteins.
-A 'full' Blast analysis can run for several days and consume several GB of Ram. Consequently, for a huge amount of data it is recommended to parallelize this step doing analysis of chunks of tens or hundreds proteins. This approach can be used to give a name to the genes and a function to the transcripts.
+Blast searches provide an indication about potential homology to known proteins. This approach can be used to give a name to the genes and a function to the transcripts. A 'full' Blast analysis can run for several days and consume several GB of Ram. Consequently, for a huge amount of data it is recommended to parallelize this step doing analysis of chunks of tens or hundreds proteins. 
 
-### Perform Blast searches from the command line on Uppmax:
+### Perform Blast searches from the command line:
 
 To run Blast on your data, use the Ncbi Blast+ package against a Drosophila-specific database (included in the folder we have provided for you, under **~/annotation/blastdb/uniprot\_dmel/uniprot\_dmel.fa**) - of course, any other NCBI database would also work:
 ```
-/etc/ncbi-blast-2.9.0+-src/c++/ReleaseMT/bin/blastp -db ~/annotation/blastdb/uniprot_dmel/uniprot_dmel.fa -query maker_final_prot.fa -outfmt 6 -out blast.out -num_threads 4
+conda activate blast
+blastp -db $functional_annotation_path/uniprot_dmel/uniprot_dmel.fa -query maker_final_prot.fa -outfmt 6 -out blast.out -num_threads 4
 ```
+if you received the following error:  
+_BLAST Database error: No alias or index file found for protein database [/blastdb/uniprot_dmel/uniprot_dmel.fa] in search path [/home/nima_rafati/functional_annotation::]_
+
+Then create the database again, it is due to new formating implemented in blast.  
+```
+cd $data/blastb/uniprot_dmel
+makeblastdb -in uniprot_dmel.fa -dbtype prot -out uniprot_dmel.fa
+```
+
 Against the Drosophila-specific database, the blast search takes about 2 secs per protein request - depending on how many sequences you have submitted, you can make a fairly deducted guess regarding the running time.
 
 ### load the retrieved information in your annotation file:  
 
 Now you should be able to use the following script:
 ```
-gff3_sp_manage_functional_annotation.pl -f maker_final.interpro/maker_final.gff -b blast.out --db ~/annotation/blastdb/uniprot_dmel/uniprot_dmel.fa -o maker_final.interpro.blast  
+conda activate agat
+agat_sp_manage_functional_annotation.pl -f maker_final.interpro/maker_final.gff -b blast.out --db ~/annotation/blastdb/uniprot_dmel/uniprot_dmel.fa -o maker_final.interpro.blast  
 ```
 That will add the name attribute to the "gene" feature and the description attribute (corresponding to the product information) to the "mRNA" feature into you annotation file.
 The improved annotation is the gff file inside the maker_final.interpro.blast folder.
@@ -159,16 +172,16 @@ For instance, you can do this to count genes with names :
 
 The purpose is to modify the ID value by something more convenient (i.e FLYG00000001 instead of maker-4-exonerate_protein2genome-gene-8.41).  
 ```
-gff3_sp_manage_functional_annotation.pl -f maker_final.interpro.blast/maker_final.gff --ID FLY -o maker_final.interpro.blast.ID  
+agat_sp_manage_functional_annotation.pl -f maker_final.interpro.blast/maker_final.gff --ID FLY -o maker_final.interpro.blast.ID  
 ```
 The improved annotation is the gff file inside the maker_final.interpro.blast.ID folder.
 
 ### Polish your file for a nice display within Webapollo
 
 For a nice display of a gff file within Webapollo some modification might be needed.
-As example the attribute ***product*** is not displayed in Webapollo, whereas renaming it ***description*** will work out.
+As example the attribute ***product*** is not displayed in Webapollo, whereas renaming it to ***description*** will work out.
 ```
-gff3_sp_webApollo_compliant.pl -gff maker_final.interpro.blast.ID/maker_final.gff -o final_annotation.gff
+agat_sp_webApollo_compliant.pl -gff maker_final.interpro.blast.ID/maker_final.gff -o final_annotation.gff
 ```
 
 ## Visualise the final annotation
@@ -178,7 +191,7 @@ Transfer the final_annotation.gff file to your computer using scp in a new termi
 scp -P <port-number> <username>@<host>:~/annotation/functional_annotation/final_annotation.gff .
 ```
 
-Load the file in into the genome portal called drosophila_melanogaster_chr4 in the Webapollo genome browser available at the address [http://annotation-prod.scilifelab.se:8080/NBIS_course/](http://annotation-prod.scilifelab.se:8080/NBIS_course/). [Here find the WebApollo instruction](webapollo_usage)
+Load the file in into the genome portal called drosophila_melanogaster_chr4 in the Webapollo genome browser available at the address [https://webapollo.nbis.se/elixirannotation2021/annotator/index](https://webapollo.nbis.se/elixirannotation2021/annotator/index). [Here find the WebApollo instruction](webapollo_usage)
 
 Wonderfull ! isn't it ?
 

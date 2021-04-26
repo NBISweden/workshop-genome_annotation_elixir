@@ -10,12 +10,14 @@ objectives:
 ---
 
 # Prerequisites
-For this exercise you need to be logged in to Uppmax.
+For this exercise you need to use command line.
 
 Setup the folder structure:
 
 ```bash
-export data=/home/data/byod/Annotation/data
+cd ~/annotation/
+conda activate agat
+export data=/home/data/data_annotation/
 export submission_path=~/annotation/submission
 mkdir -p $submission_path
 cd $submission_path
@@ -26,7 +28,7 @@ ln -s ~/annotation/functional_annotation/final_annotation.gff
 
 # Submission to public repository (creation of an EMBL file)
 
-Once your are satisfied by the wonderful annotation you have done, it would useful important to submit it to a public repostiroy. Fisrt you will be applaused by the community because you share your nice work, secondly this is often mandatory if you wish to publish some work related to this annotation.
+Once your are satisfied by the wonderful annotation you have done, it is important to submit it to a public repostiroy. Fisrt, you will be applaused by the community because you share your nice work. Second, this is often mandatory if you wish to publish some work related to this annotation.
 
 Current state-of-the-art genome annotation tools use the GFF3 format as output, while this format is not accepted as submission format by the International Nucleotide Sequence Database Collaboration (INSDC) databases. Converting the GFF3 format to a format accepted by one of the three INSDC databases is a key step in the achievement of genome annotation projects. However, the flexibility existing in the GFF3 format makes this conversion task difficult to perform.
 
@@ -40,8 +42,8 @@ In real life, prior to a submission to ENA, you need to create an account and cr
 First you need polish your annotation to filter or flag suprious cases (e.g short intron < 10 bp) otherwise the submission might fail :
 
 ```bash
-gff3_sp_flag_short_intron.pl --gff final_annotation.gff -o maker_final_short_intron_flagged.gff
-gff3_sp_fix_features_locations_duplicated.pl --gff maker_final_short_intron_flagged.gff -o maker_final_short_intron_flagged_duplicated_location_fixed.gff
+agat_sp_flag_short_introns.pl --gff final_annotation.gff -o maker_final_short_intron_flagged.gff
+agat_sp_fix_features_locations_duplicated.pl --gff maker_final_short_intron_flagged.gff -o maker_final_short_intron_flagged_duplicated_location_fixed.gff
 ```
 
 ### Data convertion
@@ -49,9 +51,13 @@ gff3_sp_fix_features_locations_duplicated.pl --gff maker_final_short_intron_flag
 Then you will run EMBLmyGFF3 but you need first to get rid of exons that are often source of problem. Anyway the exon inforamtion will be redundant because is stored within the mRNA features.
 
 ```bash
+conda activate embl
 EMBLmyGFF3 --expose_translations
 ```
-
+If it didn't work you can do
+```
+cp /opt/anaconda3/envs/embl/lib/python3.8/site-packages/EMBLmyGFF3/modules/translation_gff_feature_to_embl_feature.json .
+```
 Then modify translation_gff_feature_to_embl_feature.json to get rid of exons during the convertion.
 
 ```bash
@@ -59,20 +65,25 @@ nano translation_gff_feature_to_embl_feature.json
 ```
 <details>
 <summary>:key: Click here to see the expected maker_opts.ctl.</summary>
-{% highlight bash %}
-  ...
- "exon": {
-   "remove": true
- },
-  ... 
-{% endhighlight %}
-</details>  
+  ...  
+ "exon": {   
+   "remove": true   
+ },  
+  ...   
+</details>   
 
 
-You can now run the convertion:
+You can now run the conversion:
 
 ```bash
-EMBLmyGFF3 maker_final_short_intron_flagged_duplicated_location_fixed.gff genome.fa -o my_annotation_ready_to_submit.embl
+EMBLmyGFF3 maker_final_short_intron_flagged_duplicated_location_fixed.gff genome.fa -o my_annotation_ready_to_submit.embl \
+        --topology linear \
+        --molecule_type 'genomic DNA' \
+        --transl_table 1  \
+        --species 'Drosophila melanogaster' \
+        --locus_tag LOCUSTAG \
+        --project_id PRJXXXXXXX \
+        -o my_annotation_ready_to_submit.embl
 ```
 
 ### Check the sanity of your embl file
@@ -83,10 +94,10 @@ If you don't use the Webin-CLI program (Interactive Submissions, Programmatic Su
 Download the validator and validate your file:
 
 ```bash
-wget http://central.maven.org/maven2/uk/ac/ebi/ena/sequence/embl-api-validator/1.1.265/embl-api-validator-1.1.265.jar
+wget https://repo1.maven.org/maven2/uk/ac/ebi/ena/sequence/embl-api-validator/1.1.265/embl-api-validator-1.1.265.jar
 java -jar embl-api-validator-1.1.265.jar -r my_annotation_ready_to_submit.embl
 ```
 
 
 If the file is validated, you now have a EMBL flat file ready to submit. In theory to finsish the submission, you will have to send this archived file to their ftp server and finish the submission process in the website side too.
-But we will not go further. We are done. CONGRATULATION you know most of the secrets needed to understand the annotations on and perform your own!  
+But we will not go further. We are done. CONGRATULATIONS! You know most of the secrets needed to understand the annotations and perform your own!  
