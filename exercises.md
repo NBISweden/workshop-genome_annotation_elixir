@@ -18,10 +18,8 @@ title:  'Exercices'
 **45'** [Practical: Abinitio evidence-driven annotation - MAKER](labs/maker_abinitio_evidence_driven)  
 **1.00'** [Practical: Annotation_assessment](labs/annotation_assessment)  
 **1.00'** [Practical: Manual curation](labs/manual_curation)  
-**45'** [Lecture: Functional annotation]()   
 **1.15'** [Practical: Functional annotation](labs/functional_annotation)  
-**30'** [Practical: Submission to DB](labs/submission)  
-**20'** [Lecture: Prokaryote annotation]()  
+**30'** [Practical: Submission to DB](labs/submission)    
 **50'** [Practical: Prokaryote annotation and visualization](labs/prokaryote_annotation)  
 
 
