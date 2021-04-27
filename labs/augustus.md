@@ -89,7 +89,6 @@ Number of mrnas with utr both sides          60<br/>
 Number of mrnas with at least one utr        60<br/>
 Number of cdss                               60<br/>
 
-</code>
 </details>
 
 
@@ -112,13 +111,11 @@ Run augustus on the same genome file but using settings for yeast instead (chang
 
 <details>
 <summary>:key: Click to see the solution .</summary>
-
-conda deactivate
-
-conda activate bioinfo
-
-augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff
-
+<pre class="code">
+<code>conda deactivate</code>
+<code>conda activate bioinfo</code>
+<code>augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff</code>
+</pre>
 </details>
 
 You can have look at the statistics to have a first impression of what are the differences compared to the previous annotation:
