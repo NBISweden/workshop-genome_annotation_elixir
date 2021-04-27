@@ -62,7 +62,7 @@ Take a look at the result file using ‘less augustus\_drosophila.gff’. What k
 <details>
 <summary>:key: Click to see the solution .</summary>
 You have annotated genes, transcripts, exons, CDS, introns...<br/>
-No UTR for drosophila melanogaster but can do it for other species see [augustus](http://bioinf.uni-greifswald.de/augustus/)
+No UTR for drosophila melanogaster but can do it for other species see <A href="http://bioinf.uni-greifswald.de/augustus/"> augustus</A>
 </details>
 
 
