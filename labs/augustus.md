@@ -112,9 +112,9 @@ Run augustus on the same genome file but using settings for yeast instead (chang
 <details>
 <summary>:key: Click to see the solution .</summary>
 <pre class="code">
-<code>conda deactivate</code>
-<code>conda activate bioinfo</code>
-<code>augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff</code>
+conda deactivate
+conda activate bioinfo
+augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_saccharomyces.gff
 </pre>
 </details>
 
