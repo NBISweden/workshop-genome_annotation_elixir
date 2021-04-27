@@ -15,7 +15,6 @@ Setup the folder structure:
 
 ```bash
 cd ~/annotation/
-conda activate bioinfo
 export data=/home/data/data_annotation/
 export bacterial_annotation_path=~/annotation/bacterial_annotation
 mkdir -p $bacterial_annotation_path
@@ -76,7 +75,7 @@ Run prokka without any options and then with options of your choices (we encoura
 
 <br>Running prokka with only the output option looks like this :  
 
-  <br><code> conda activate prokka
+  <br><code> conda activate prokka  
   prokka Chlamydia_trachomatis_genome.fa --outdir prokka_Chlamydia
 </code>  
 
