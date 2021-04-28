@@ -1,6 +1,6 @@
 ### Using WebApollo to view annotations
 
-For this course, we have set up a WebApollo installation, the url is [https://webapollo.nbis.se/elixirannotation2021/annotator/index](https://webapollo.nbis.se/elixirannotation2021/annotator/index).
+For this course, we have set up a WebApollo installation, the url is [https://webapollo.nbis.se/elixirannotation2021/7460/jbrowse/index.html]( https://webapollo.nbis.se/elixirannotation2021/7460/jbrowse/index.html).
 
 As we will browse public genomes, we do not need to login.
 
