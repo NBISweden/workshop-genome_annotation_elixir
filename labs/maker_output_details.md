@@ -41,33 +41,33 @@ You have two options now for gathering the output in some usable form - copy sel
 
 From the folder you have run Maker, run the script called 'maker\_merge\_outputs\_from\_datastore' to create an output file for all annotations and protein files:
 ```
-maker_merge_outputs_from_datastore.pl 
+gaas_maker_merge_outputs_from_datastore.pl 
 ```
 This will create a directory called "**maker_output_processed.<name_of_genome_fasta>**" containing a long list of files depending on parameters used for running MAKER.  
 
 ```
-augustus_masked.gff
+augustus_masked.gff *
 blastn.gff
 blastx.gff
-cdna2genome.gff
-est_gff_est2genome.gff
-evm.gff
-fgenesh_masked.gff
-genemark.gff
-genome.all.maker.augustus_masked.proteins.fasta
-genome.all.maker.augustus_masked.transcripts.fasta
-genome.all.maker.evm.proteins.fasta
-genome.all.maker.evm.transcripts.fasta
-genome.all.maker.fgenesh.proteins.fasta
-genome.all.maker.fgenesh.transcripts.fasta
-genome.all.maker.genemark.proteins.fasta
-genome.all.maker.genemark.transcripts.fasta
-genome.all.maker.noncoding.fasta
-genome.all.maker.non_overlapping_ab_initio.proteins.fasta
-genome.all.maker.non_overlapping_ab_initio.transcripts.fasta
-genome.all.maker.snap_masked.proteins.fasta
-genome.all.maker.snap_masked.transcripts.fasta
-genome.all.maker.trnascan.noncoding.fasta
+est2genome.gff
+est_gff_stringtie.gff
+evm.gff *
+fgenesh_masked.gff *
+genemark.gff *
+genome.all.maker.augustus_masked.proteins.fasta *
+genome.all.maker.augustus_masked.transcripts.fasta *
+genome.all.maker.evm.proteins.fasta *
+genome.all.maker.evm.transcripts.fasta *
+genome.all.maker.fgenesh.proteins.fasta *
+genome.all.maker.fgenesh.transcripts.fasta *
+genome.all.maker.genemark.proteins.fasta *
+genome.all.maker.genemark.transcripts.fasta *
+genome.all.maker.noncoding.fasta *
+genome.all.maker.non_overlapping_ab_initio.proteins.fasta *
+genome.all.maker.non_overlapping_ab_initio.transcripts.fasta *
+genome.all.maker.snap_masked.proteins.fasta *
+genome.all.maker.snap_masked.transcripts.fasta *
+genome.all.maker.trnascan.noncoding.fasta *
 maker_bopts.ctl
 maker_evm.ctl
 maker_exe.ctl
@@ -85,6 +85,7 @@ repeat_gff_repeatrunner.gff
 snap_masked.gff
 tblastx.gff
 ```
+\* only if an abinitio tool has been activated or tRNAscan
 
 Here is a describtion of the most important files:
 
@@ -117,7 +118,7 @@ This fasta file contains the nucleotide sequences of the transcripts (mRNA) of t
  * **maker_annotation_proteins.fasta** 
 This fasta file contains the amino acid sequences of the proteins translated from the CDS of the MAKER gene models.
 
- * **cdna2genome.gff**  
+ * **est2genome.gff**  
 Contains the fasta sequences provided by the **est=** parameter that have been succefuly mapped onto the assembly.
 
  * **est_gff_xxx_.gff**  
