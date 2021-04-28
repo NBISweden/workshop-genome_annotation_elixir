@@ -35,7 +35,7 @@ In this exercise you will handle different annotation files:
 
 • the official annotation from Ensembl
 
-## overview
+## Overview
 
 Evaluating an annotation can be done in different ways:
 
