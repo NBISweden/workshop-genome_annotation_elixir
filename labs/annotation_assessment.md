@@ -1,7 +1,7 @@
 ---
 layout: default-overview
 title: Comparing and evaluating annotations
-exercises: 1h15
+exercises: 1h00
 questions:
   - How can we compare two annotation?
   - How to merge different annotations?
