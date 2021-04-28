@@ -22,10 +22,10 @@ This meens the sequence **4** was started - and finished, with all data (annotat
 If you look into that folder, you will find the finished Maker annotation for this contig.
 ```
 rw-rw-r- 1 student student 472193 Mar 24 10:16 4.gff
-*rw-rw-r- 1 student student 3599 Mar 24 10:16 4.maker.augustus_masked.proteins.fasta
-*rw-rw-r- 1 student student 10388 Mar 24 10:16 4.maker.augustus_masked.transcripts.fasta
-*rw-rw-r- 1 student student 176 Mar 24 10:16 4.maker.non_overlapping_ab_initio.proteins.fasta 
-*rw-rw-r- 1 student student 328 Mar 24 10:16 4.maker.non_overlapping_ab_initio.transcripts.fasta
+*rw-rw-r- 1 student student 3599 Mar 24 10:16 4.maker.augustus_masked.proteins.fasta *
+*rw-rw-r- 1 student student 10388 Mar 24 10:16 4.maker.augustus_masked.transcripts.fasta *
+*rw-rw-r- 1 student student 176 Mar 24 10:16 4.maker.non_overlapping_ab_initio.proteins.fasta * 
+*rw-rw-r- 1 student student 328 Mar 24 10:16 4.maker.non_overlapping_ab_initio.transcripts.fasta *
 rw-rw-r- 1 student student 3931 Mar 24 10:16 4.maker.proteins.fasta
 rw-rw-r- 1 student student 20865 Mar 24 10:16 4.maker.transcripts.fasta
 rw-rw-r- 1 student student 4248 Mar 24 10:15 run.log
