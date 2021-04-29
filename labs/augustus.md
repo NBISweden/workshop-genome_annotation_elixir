@@ -94,7 +94,7 @@ Number of cdss                               60<br/>
 
 Transfer the augustus\_drosophila.gff3 to your computer using scp from a local terminal:    
 ```
-scp -P 65022 __YOURLOGIN__@<host>:~/annotation/structural_annotation/abinitio_augustus/augustus_drosophila.gff3 .  
+scp -P <port_number> <login_name>@<host>:~/annotation/structural_annotation/abinitio_augustus/augustus_drosophila.gff3 .  
 ```
 Load the file in [Webapollo (Here find the instruction)](webapollo_usage)
 <br/>The official Ensembl annotation is available in the genome browser.  
