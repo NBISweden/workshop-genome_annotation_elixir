@@ -3,7 +3,7 @@ layout: default
 title:  'Exercices'
 ---
 
-# Genome Annotation
+# Elixir Genome Annotation Workshop
 
 **Teachers:**  
 [Nima Rafati, Ph.D.](http://nbis.se/about/staff/nima-rafati/)  
