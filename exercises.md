@@ -3,7 +3,7 @@ layout: default
 title:  'Exercices'
 ---
 
-# Introduction to genome annotation
+# Genome Annotation
 
 **Teachers:**  
 [Nima Rafati, Ph.D.](http://nbis.se/about/staff/nima-rafati/)  
