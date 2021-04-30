@@ -313,7 +313,7 @@ There exist a number of 'annotation viewers' - IGV, Argo and Apollo, to name a f
 
 ### Using WebApollo to view annotations
 Transfer your maker annotation files to your computer using the scp command.  
-Then, jump to [WebApollo](webapollo_usage) and upload your annotation track into the **dromel\_chr4** genome portal.
+Then, jump to [Webapollo](webapollo_usage) and upload your annotation track into the **dromel\_chr4** genome portal.
 You can now compare your gene builds against this reference. Some questions to ask yourself:
 
 :question:Do my gene builds recover all the genes found in the reference?  
