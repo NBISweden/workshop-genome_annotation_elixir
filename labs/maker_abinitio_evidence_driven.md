@@ -86,7 +86,7 @@ export AUGUSTUS_CONFIG_PATH=~/annotation/structural_annotation/augustus_training
 ```
 
 
-With these settings, Maker will run augustus to predict gene loci, but inform these predictions with information from the protein, trainscripts and est alignments.
+With these settings, Maker will run augustus to predict gene loci, but inform these predictions with information from the protein, transcripts and est alignments.
 
 Before running MAKER check you have modified the maker_opts.ctl file properly.
 <details>
