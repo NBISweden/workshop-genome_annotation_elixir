@@ -14,7 +14,7 @@ objectives:
 
 Setup the folder structure:
 
-```
+```coffee 
 cd
 export data=/home/data/data_annotation/
 export assessment=~/annotation/structural_annotation/assessment
@@ -71,7 +71,6 @@ conda activate agat
 agat_sp_statistics.pl --gff maker_evidence.gff -o maker_evidence_stat.txt
 agat_sp_statistics.pl --gff maker_abinitio.gff -o maker_abinitio_stat.txt
 ```
-**COMMENT : to try if there is a real difference or remove**
 
 Different methods can predict genes that are not in common (non-overlaping). To increase the sensitivity it could be important to create a non-redundant concatenated gene set. Let's do it for the MAKER annotations:
 ```
