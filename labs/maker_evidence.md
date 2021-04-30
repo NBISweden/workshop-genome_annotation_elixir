@@ -72,8 +72,10 @@ conda deactivate
 conda activate maker
 maker -CTL
 ```
+:question: What files did it create?
 
-You can leave the two files controlling external software behaviors untouched but you need to provide the proper parameters in the file called **maker_opts.ctl**. Indeed it in that last we tell MAKER what are the files to use, and the options to apply.
+You can leave the two files controlling external software behaviors and the one controlling evm parameters untouched (I will encourage you to have a look at them and to look at this [website](http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/The_MAKER_control_files_explained) to have a full description of those files).
+However, you need to provide the proper parameters in the file called **maker_opts.ctl**. Indeed, in that file, we tell MAKER what are the files to use, and the options to apply.
 
 
 To edit the **maker_opts.ctl** file you can use the nano text editor:  
