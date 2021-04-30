@@ -14,7 +14,7 @@ objectives:
 
 Setup the folder structure:
 
-```coffee 
+```
 cd
 export data=/home/data/data_annotation/
 export assessment=~/annotation/structural_annotation/assessment
