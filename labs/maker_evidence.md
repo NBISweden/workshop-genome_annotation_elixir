@@ -189,12 +189,17 @@ This should create a **maker\_evidence** folder containing all computed data inc
 
 ## Inspect the gene models
 
-To get some statistics of your annotation you could read the **maker_annotation_stat.txt** file from the **maker\_evidence** folder or launch this script that work on any gff file :
-```
+To get some statistics of your annotation you can read the **maker_annotation_stat.txt** file from the **maker\_evidence** folder or launch the agat_sp_statistics.pl (you used it before) that work on any gff file :
+
+<details>
+<summary>:key: Click to see the solution .</summary>
+<pre class="code">
 conda deactivate
 conda activate agat
 agat_sp_statistics.pl --gff maker_evidence/maker_annotation.gff
-```
+</pre>
+</details>
+
 
 :question: How many genes do you get? what kind of statistics do you see?
 
