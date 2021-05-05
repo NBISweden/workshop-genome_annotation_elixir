@@ -153,7 +153,6 @@ unmask=0 #also run ab-initio prediction programs on unmasked sequence, 1 = yes, 
 ...
 {% endhighlight %}
 </details>  
-To better understand the different parameters you can have a look [here](http://weatherby.genetics.utah.edu/MAKER/wiki/index.php/The_MAKER_control_files_explained)
 
 ## Run Maker
 
