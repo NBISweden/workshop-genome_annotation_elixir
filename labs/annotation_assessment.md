@@ -66,11 +66,15 @@ ln -s ../../maker_abinitio/maker_abinitio/maker_annotation.gff maker_abinitio.gf
 As already seen previously you can have a look at the statistics of an annotation with the **agat_sp_statistics.pl** script.  
 As you will note, there are some differences - and of course, this is expected, since different approaches has been used to generate them.
 
-```
+<details>
+<summary>:key: Click to see the solution .</summary>
+<pre class="code">
 conda activate agat
 agat_sp_statistics.pl --gff maker_evidence.gff -o maker_evidence_stat.txt
 agat_sp_statistics.pl --gff maker_abinitio.gff -o maker_abinitio_stat.txt
-```
+</pre>
+</details>
+
 
 Different methods can predict genes that are not in common (non-overlaping). To increase the sensitivity it could be important to create a non-redundant concatenated gene set. Let's do it for the MAKER annotations:
 ```
