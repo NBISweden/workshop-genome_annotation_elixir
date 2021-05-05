@@ -118,12 +118,17 @@ augustus --species=saccharomyces $data/genome/genome.fa --gff3=on > augustus_sac
 </pre>
 </details>
 
-You can have look at the statistics to have a first impression of what are the differences compared to the previous annotation:
-```
+Have a look at the statistics to have a first impression of what are the differences compared to the previous annotation (like you did previously).
+
+<details>
+<summary>:key: Click to see the solution .</summary>
+<pre class="code">
 conda deactivate
 conda activate agat
 agat_sp_statistics.pl --gff augustus_saccharomyces.gff
-```
+</pre>
+</details>
+
 
 Load this result file into Webapollo and compare with your earlier results.  
 
