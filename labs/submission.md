@@ -64,7 +64,7 @@ Then modify translation_gff_feature_to_embl_feature.json to get rid of exons dur
 nano translation_gff_feature_to_embl_feature.json
 ```
 <details>
-<summary>:key: Click here to see the expected maker_opts.ctl.</summary>
+<summary>:key: Click here to see the expected translation_gff_feature_to_embl_feature.json.</summary>
   ...  
  "exon": {   
    "remove": true   
