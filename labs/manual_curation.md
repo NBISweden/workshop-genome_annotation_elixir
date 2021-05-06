@@ -54,14 +54,13 @@ A genomic region of the chrosmosome is assigned to each of you. Your aim is to m
 
 NOTES: Isoforms are allowed. Start each gene annotation by dragging-and-dropping the gene model that you think be the best.
 
-1 :    	            1 - 168 982
-<br/>2	:        168 983 - 337 965
-<br/>3	:              337 966 - 506 948
-<br/>4	:            506 949 - 675 931
-<br/>5	:              675 932 - 844 914
-<br/>6 :             844 915 - 1 013 897
-<br/>7 :                1 013 898 - 1 182 880
-<br/>8	:            1 182 881 - 1 351 857
+1 :    	           1 - 225 311
+<br/>2	:        225 312 - 450 621
+<br/>3	:              450 622 - 675 931
+<br/>4	:            675 932 - 901 241
+<br/>5	:              901 242 - 1 126 551
+<br/>6 :             1 126 552 - 1 351 857
+
 
 The work you performed was only on small genome portion (1,3 Mbp). That gives you a flavour of the time cost to do a manual curation on a small genome, and an idea of the amount of work needed to manually curate a big genome (>1 Gbp).
 
