@@ -79,7 +79,7 @@ Launch Interproscan with the option -h if you want have a look about all the par
 <br> - If you enable the InterPro lookup ('-iprlookup'), you can also get the InterPro identifier corresponding to each motif retrieved: for example, the same motif is known as PF01623 in Pfam and as IPR002568 in InterPro.
 <br> - The option '-pa' provides mappings from matches to pathway information (MetaCyc,KEGG,Reactome).
 ```
-interproscan.sh -i maker_final_prot.fa -t p -dp -pa -appl Pfam,ProDom-2006.1,SuperFamily-1.75 --goterms --iprlookup
+interproscan.sh -i maker_final_prot.fa -t p -dp -pa -appl Pfam,SuperFamily-1.75 --goterms --iprlookup
 ```
 This analyse will fail.  
 
