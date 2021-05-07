@@ -75,9 +75,8 @@ Run prokka without any options and then with options of your choices (we encoura
 <details>
 <summary> :key: Click to see example on how to run prokka (you do not need to run all of them you can run prokka only with the output options and the two options --proteins and --rfam)</summary>  
 
-Running prokka with only the output option looks like this :  
 <pre class="code">
- 
+Running prokka with only the output option looks like this :   
 prokka Chlamydia_trachomatis_genome.fa --outdir prokka_Chlamydia
 
 Running prokka with only --rfam looks like this :  
