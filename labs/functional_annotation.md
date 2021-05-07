@@ -141,7 +141,7 @@ _BLAST Database error: No alias or index file found for protein database [/blast
 
 Then create the database again, it is due to new formating implemented in blast.  
 ```
-cd $data/blastdb/uniprot_dmel
+cd uniprot_dmel
 makeblastdb -in uniprot_dmel.fa -dbtype prot -out uniprot_dmel.fa
 ```
 
