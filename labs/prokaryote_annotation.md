@@ -44,7 +44,8 @@ Run BUSCO on the 3 bacterial assemblies provided. We will select the lineage set
 BUSCO is using augustus to run, as we have no administator rights on uppmax we need to source the $BUSCO_SETUP that will copy the augustus folder with the config files.
 
 ```
-busco -i Chlamydia_trachomatis_genome.fa -o chlamydia_busco -m geno -c 8 -l /home/data/opt-byod/busco/lineages/bacteria_odb9
+conda activate busco
+busco -i Chlamydia_trachomatis_genome.fa -o chlamydia_busco -m geno -c 8 -l bacteria_odb10
 ```
 Look at the results of busco in short_summary_chlamydia_busco.txt
 
