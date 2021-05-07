@@ -21,7 +21,7 @@ export submission_path=~/annotation/submission
 mkdir -p $submission_path
 cd $submission_path
 ln -s $data/genome/genome.fa
-ln -s ~/annotation/functional_annotation/maker_final.interpro.blast.ID/maker_final.gff final_annotation.gff
+ln -s ~/annotation/functional_annotation/final_annotation.gff
 
 ```
 
