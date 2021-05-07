@@ -74,29 +74,22 @@ Run prokka without any options and then with options of your choices (we encoura
 <details>
 <summary> :key: Click to see example on how to run prokka (you do not need to run all of them you can run prokka only with the output options and the two options --proteins and --rfam)</summary>  
 
-<br>Running prokka with only the output option looks like this :  
+Running prokka with only the output option looks like this :  
+<pre class="code">
+conda activate prokka  
+prokka Chlamydia_trachomatis_genome.fa --outdir prokka_Chlamydia
 
-  <br><code> conda activate prokka  
-  prokka Chlamydia_trachomatis_genome.fa --outdir prokka_Chlamydia
-</code>  
+Running prokka with only --rfam looks like this :  
+prokka Chlamydia_trachomatis_genome.fa --rfam --outdir prokka_Chlamydia_rfam
 
-<br>Running prokka with only --rfam looks like this :  
+Running prokka with only --proteins looks like this :  
+prokka Chlamydia_trachomatis_genome.fa --proteins uniprot-chlamydia.fasta --outdir prokka_Chlamydia_prot
+ 
+Running prokka with --proteins and --rfam looks like this :  
+prokka Chlamydia_trachomatis_genome.fa --proteins uniprot-chlamydia.fasta --rfam --outdir prokka_Chlamydia_prot_rfam
 
-<br><code> prokka Chlamydia_trachomatis_genome.fa --rfam --outdir prokka_Chlamydia_rfam
-</code>  
-
-<br>Running prokka with only --proteins looks like this :  
-
-<br><code> prokka Chlamydia_trachomatis_genome.fa --proteins uniprot-chlamydia.fasta --outdir prokka_Chlamydia_prot
-</code>  
-
-<br>Running prokka with --proteins and --rfam looks like this :  
-
-<br><code> prokka Chlamydia_trachomatis_genome.fa --proteins uniprot-chlamydia.fasta --rfam --outdir prokka_Chlamydia_prot_rfam
-</code>  
-
-<br>You can try other options to see what you would need to modify in your own projects!
-
+You can try other options to see what you would need to modify in your own projects!
+</pre>
 </details>
 
 
