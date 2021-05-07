@@ -144,6 +144,7 @@ Then create the database again, it is due to new formating implemented in blast.
 ```
 cd uniprot_dmel
 makeblastdb -in uniprot_dmel.fa -dbtype prot -out uniprot_dmel.fa
+cd $functional_annotation_path
 ```
 
 Against the Drosophila-specific database, the blast search takes about 2 secs per protein request - depending on how many sequences you have submitted, you can make a fairly deducted guess regarding the running time.
@@ -153,7 +154,7 @@ Against the Drosophila-specific database, the blast search takes about 2 secs pe
 Now you should be able to use the following script:
 ```
 conda activate agat
-agat_sp_manage_functional_annotation.pl -f maker_final.interpro/maker_final.gff -b blast.out --db ~/annotation/blastdb/uniprot_dmel/uniprot_dmel.fa -o maker_final.interpro.blast  
+agat_sp_manage_functional_annotation.pl -f maker_final.interpro/maker_final.gff -b blast.out --db uniprot_dmel/uniprot_dmel.fa -o maker_final.interpro.blast  
 ```
 That will add the name attribute to the "gene" feature and the description attribute (corresponding to the product information) to the "mRNA" feature into you annotation file.
 The improved annotation is the gff file inside the maker_final.interpro.blast folder.
