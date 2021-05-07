@@ -65,6 +65,7 @@ ln -s $data/raw_computes/uniprot-escherichia.fasta
 ln -s $data/raw_computes/uniprot-chlamydia.fasta
 ln -s $data/raw_computes/uniprot-streptococcus.fasta
 
+conda activate prokka 
 prokka --help
 ```
 The goal of the exercise is for you to learn how to use prokka and to annotate the 3 assemblies and then visualize them in IGV.  
@@ -76,7 +77,7 @@ Run prokka without any options and then with options of your choices (we encoura
 
 Running prokka with only the output option looks like this :  
 <pre class="code">
-conda activate prokka  
+ 
 prokka Chlamydia_trachomatis_genome.fa --outdir prokka_Chlamydia
 
 Running prokka with only --rfam looks like this :  
