@@ -66,8 +66,8 @@ nano translation_gff_feature_to_embl_feature.json
 <summary>:key: Click here to see the expected translation_gff_feature_to_embl_feature.json.</summary>
   ...  
  "exon": {<br>   
-   "remove": true   
- }  
+   "remove": true <br>
+ }<br>   
   ...   
 </details>   
 
