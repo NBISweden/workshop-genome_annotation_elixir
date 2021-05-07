@@ -15,14 +15,13 @@ For this exercise you need to use command line.
 Setup the folder structure:
 
 ```bash
-cd ~/annotation/
 conda activate agat
 export data=/home/data/data_annotation/
 export submission_path=~/annotation/submission
 mkdir -p $submission_path
 cd $submission_path
 ln -s $data/genome/genome.fa
-ln -s ~/annotation/functional_annotation/final_annotation.gff
+ln -s ~/annotation/functional_annotation/maker_final.interpro.blast.ID/maker_final.gff final_annotation.gff
 
 ```
 
@@ -54,7 +53,7 @@ Then you will run EMBLmyGFF3 but you need first to get rid of exons that are oft
 conda activate embl
 EMBLmyGFF3 --expose_translations
 ```
-If it didn't work you can do
+:bangbang: If it didn't work you can do
 ```
 cp /opt/anaconda3/envs/embl/lib/python3.8/site-packages/EMBLmyGFF3/modules/translation_gff_feature_to_embl_feature.json .
 ```
